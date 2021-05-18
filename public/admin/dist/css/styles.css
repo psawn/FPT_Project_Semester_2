@@ -10247,3 +10247,29 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
 }
+
+/*
+ CSS tự thêm
+*/
+select {
+    border:0px;
+    outline:0px
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+input,textarea {
+    border: none;
+    border-width: 0;
+    box-shadow: none;
+}
