@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use App\Models\KhuyenMai;
 
 class KhuyenMaiController extends Controller
@@ -26,7 +27,7 @@ class KhuyenMaiController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.khuyenmai.create");
     }
 
     /**
@@ -37,7 +38,31 @@ class KhuyenMaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'phantramkhuyenmai' => 'required',
+            'is_active' => 'required|numeric|min:0|max:100',
+            'ngaybatdau'=>'required',
+            'ngayketthuc'=>'required',
+            'tieude'=> 'required',
+            'noidung'=>'required',
+        ], [
+            'phantramkhuyenmai.required'=>'Phần trăm không được để trống',
+            'is_active.required'=>'Is_Active không được để trống',
+            'ngaybatdau.required'=>'Ngày không được để trống',
+            'ngayketthuc.mimes'=>'Ngày không được để trống',
+            'tieude.max'=>'Tiêu đề không được để trống',
+            'noidung.required' =>'Nội dung không được để trống',
+        ]);
+        $khuyenmai = new KhuyenMai();
+        $khuyenmai ->phantramkhuyenmai = $request->phantramkhuyenmai;
+        $khuyenmai ->is_active = $request->is_active;
+        $khuyenmai ->ngaybatdau = $request->ngaybatdau;
+        $khuyenmai ->ngayketthuc = $request->ngayketthuc;
+        $khuyenmai ->tieude = $request->tieude;
+        $khuyenmai ->noidung = $request->noidung;
+        $khuyenmai ->nguoitao = $request->nguoitao;
+        $res = $khuyenmai->save();
+        return redirect()->route('khuyenmai.index')->with("success","Thêm mới thành công");
     }
 
     /**
@@ -118,6 +143,7 @@ class KhuyenMaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $khuyenmai = KhuyenMai::destroy($id);
+        return Response::json($khuyenmai);
     }
 }
