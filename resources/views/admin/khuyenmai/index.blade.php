@@ -1,7 +1,13 @@
 @extends("layouts.template")
 @section("content")
 <div class="container-fluid">
-                        <h1 class="mt-4">Khuyến mại</h1>
+                        <div class="mt-4">
+                        	<h1>Khuyến mại
+                        		<a class="btn btn-primary float-right" style="width: 15%" href="{{ url('khuyenmai/create')}}">
+                        			Thêm
+                        		</a>
+                        	</h1> 	
+                        </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Khuyến mại</li>

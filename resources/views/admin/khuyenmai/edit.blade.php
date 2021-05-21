@@ -1,7 +1,13 @@
 @extends("layouts.template")
 @section("content")
 <div class="container-fluid">
-                        <h1 class="mt-4">Khuyến mại</h1>
+                        <div class="mt-4">
+                        	<h1>Khuyến mại
+                        		<a class="btn btn-primary float-right" style="width: 15%" href="{{ url('khuyenmai/create')}}">
+                        			Thêm
+                        		</a>
+                        	</h1> 	
+                        </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
                             <li class="breadcrumb-item"><a href="{{ url('/khuyenmai') }}">Khuyến mại</a></li>
@@ -15,7 +21,7 @@
                             <div class="card-body">
                             	<form id="form_sua" action="{{ route('khuyenmai.update', $khuyenmai->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
                             	@csrf
-                            	@method("patch")
+                            	
                             		<div class="table-responsive">
                             			<table class="table table-bordered" width="100%" cellspacing="0">
                             				 <tr>
@@ -102,9 +108,32 @@
                                     		</tr>
                             			</table>
                             		</div>
-                            		<button id="btn_sua"" type="submit" class="btn btn-primary mt-1" style="width: 20%;float: left">Chỉnh sửa</button>
+                            		<button id="btn_sua"" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%">Chỉnh sửa</button>
+                            		<a class="btn btn-primary mt-1 float-right" style="width:15%" href="#" onclick="deleteRecord({{$khuyenmai->id}})">Xóa</a>
                             	</form>
                             </div>
                         </div>                        
 </div>
+
+<script>
+	function deleteRecord(id){
+    		if (confirm("Bạn chắc chắn muốn xóa bản ghi này?")){
+    			let url = "{{ route('khuyenmai.destroy', '') }}"+"/"+id;
+                let token   = $('input[name="_token"]').val();
+                console.log(url);
+                console.log(token);
+                
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    data: {
+                    _token: token
+                    },
+                    success: function(response) {
+						window.location = "/khuyenmai"
+                    }
+                });
+    		}
+    	}
+</script>
 @endsection
