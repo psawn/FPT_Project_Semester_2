@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\KhuyenMai;
 use App\Http\Controllers\KhuyenMaiController;
+use App\Http\Controllers\DanhMucController;
+use App\Http\Controllers\DonHangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,4 +53,6 @@ Route::get('/layout-static', function () {
 Route::get('/layout-sidenav-light', function () {
     return view('admin.layout-sidenav-light');
 });
-Route::resource("khuyenmai", KhuyenMaiController::class);
+Route::resource("admin/khuyenmai", KhuyenMaiController::class);
+Route::resource("admin/danhmuc", DanhMucController::class);
+Route::resource("admin/donhang", DonHangController::class);

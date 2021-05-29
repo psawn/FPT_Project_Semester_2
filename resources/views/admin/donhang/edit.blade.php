@@ -2,126 +2,134 @@
 @section("content")
 <div class="container-fluid">
                         <div class="mt-4">
-                        	<h1>Đơn hàng online
-                        		<a class="btn btn-primary float-right" style="width: 15%" href="{{ url('donhang/create')}}">
-                        			Thêm
-                        		</a>
-                        	</h1>
                         </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ url('/donhang') }}">Đơn hàng </a></li>
-                            <li class="breadcrumb-item active">{{$dh_online->id}}</li>
+                            <li class="breadcrumb-item"><a href="{{ url('admin/donhang') }}">Đơn hàng</a></li>
+                            <li class="breadcrumb-item active">{{$donhang->id}}</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
                             	<i class="fas fa-edit mr-1" ></i>
-                            	<span class="font-weight-bolder text-info">Chi tiết Đơn hàng </span>
+                            	<span class="font-weight-bolder text-info">Chi tiết đơn hàng</span>
                             </div>
                             <div class="card-body">
-                            	<form id="form_sua" action="{{ route('donhang.update', $dh_online->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
+                            	<form id="form_sua" action="{{ route('donhang.update', $donhang->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
                             	@csrf
-
+                            	@method("patch")
                             		<div class="table-responsive">
                             			<table class="table table-bordered" width="100%" cellspacing="0">
                             				 <tr>
-                                                <td class="font-weight-bolder">
-                                            		<div class="container-fluid">Địa chỉ</div>
+                            				 	<td width="25%" class="font-weight-bolder">
+                                            		<div class="container-fluid">Mã đơn hàng</div>
                                         		</td>
-                                        		<td colspan="5">
-                                               		<textarea name="diachi" class="container-fluid" rows="2">{{$dh_online->diachi}}</textarea>
+                                        		<td width="25%">
+                                        			<input name="id" id="id" class="container-fluid" value="{{$donhang->id}}" readonly>
                                         		</td>
-                                                <td class="font-weight-bolder">
-                                            		<div class="container-fluid">Doanh thu</div>
+                                        		<td width="25%" class="font-weight-bolder">
+                                            		<div class="container-fluid">Ngày tạo</div>
                                         		</td>
-                                        		<td colspan="5">
-                                               		<textarea name="doanhthu" class="container-fluid" rows="1">{{$dh_online->doanhthu}}</textarea>
-                                        		</td>
-                                                <td class="font-weight-bolder">
-                                            		<div class="container-fluid">Ghi chú</div>
-                                        		</td>
-                                        		<td colspan="5">
-                                               		<textarea name="ghichu" class="container-fluid" rows="5">{{$dh_online->ghichu}}</textarea>
-                                        		</td>
-                                                <td class="font-weight-bolder">
-                                            		<div class="container-fluid">Phí ship</div>
-                                        		</td>
-                                        		<td colspan="5">
-                                               		<textarea name="phiship" class="container-fluid" rows="1">{{$dh_online->phiship}}</textarea>
-                                        		</td>
-                                        		<td  class="font-weight-bolder">
-                                            		<div class="container-fluid">Trạng thái</div>
-                                        		</td>
-                                        		<td >
-                                        			 <div id="check_trangthai" hidden>{{$dh_online->trangthai}}</div>
-                                        			 <select name="trangthai" id="trangthai" class="container-fluid">
-                                                   		<option id="status_active1">{{$dh_online->trangthai}}</option>
-                                                   		<option id="status_active2"></option>
-                                                	</select>
+                                        		<td width="25%">
+                                        			<input name="created_at" id="created_at" class="container-fluid" value="{{$donhang->created_at}}" readonly>
                                         		</td>
                             				 </tr>
-                                    		<tr>
-                                    			<td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Người duyệt</div>
-                            				 	</td>
-                            				 	<td colspan="2">
-                            				 		<input name="nguoiduyet" id="nguoiduyet" class="container-fluid" type="text" value="{{$dh_online->nguoiduyet}}">
-                            				 	</td>
-                                                 <td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Ngày duyệt</div>
-                            				 	</td>
-                            				 	<td colspan="2">
-                            				 		<div class="container-fluid">{{$dh_online->ngayduyet}}</div>
-                            				 	</td>
-                            				 	<td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Ngày tạo</div>
-                            				 	</td>
-                            				 	<td colspan="2">
-                            				 		<div class="container-fluid">{{$dh_online->created_at}}</div>
-                            				 	</td>
-                                    		</tr>
-                                    		<tr>
-                                    			<td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Người sửa</div>
-                            				 	</td>
-                            				 	<td colspan="2">
-                            				 		<input name="nguoisua" id="nguoisua" class="container-fluid" type="text" value="{{$dh_online->nguoisua}}">
-                            				 	</td>
-                            				 	<td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Ngày sửa</div>
-                            				 	</td>
-                            				 	<td colspan="2">
-                            				 		<div class="container-fluid">{{$dh_online->updated_at}}</div>
-                            				 	</td>
+                            				 <tr>
+                            				 	<td width="25%" class="font-weight-bolder">
+                                            		<div class="container-fluid">User</div>
+                                        		</td>
+                                        		<td width="25%">
+                                        			<input name="user" id="user" class="container-fluid" value="{{$donhang->User->username}}" readonly>
+                                        		</td>
+                                        		<td width="25%" class="font-weight-bolder">
+                                            		<div class="container-fluid">Họ tên</div>
+                                        		</td>
+                                        		<td width="25%">
+                                        			<input name="hoten" id="hoten" class="container-fluid" value="{{$donhang->User->hoten}}" readonly>
+                                        		</td>
+                            				 </tr>
+                            				 <tr>
+                            				 	<td width="25%" class="font-weight-bolder">
+                                            		<div class="container-fluid">Phone</div>
+                                        		</td>
+                                        		<td width="25%">
+                                        			<input name="phone" id="phone" class="container-fluid" value="{{$donhang->User->phone}}" readonly>
+                                        		</td>
+                                        		<td width="25%" class="font-weight-bolder">
+                                            		<div class="container-fluid">Email</div>
+                                        		</td>
+                                        		<td width="25%">
+                                        			<input name="email" id="email" class="container-fluid" value="{{$donhang->User->email}}" readonly>
+                                        		</td>
+                            				 </tr>
+                            				 <tr>
+                                        		<td class="font-weight-bolder">
+                                            		<div class="container-fluid">Địa chỉ</div>
+                                        		</td>
+                                        		<td colspan="3">
+                                               		<textarea name="url" id="url" class="container-fluid" rows="3">{{$donhang->diachi}}</textarea>
+                                        		</td>
                                     		</tr>
                             			</table>
+                            			<div class="table-responsive">
+                            				<table class="table detail_table table-bordered mt-3" width="100%" cellspacing="0">
+                            					<thead class="thead-primary">
+                            					 	<tr>
+						      							<th width="10%">#</th>
+						      							<th width="10%">Code</th>
+						      							<th>Tên sách</th>
+						      							<th width="10%">Số lượng</th>
+						      							<th width="15%">Giá</th>
+						      							<th width="15%">Tổng</th>
+						    						</tr>
+                            					</thead>
+                            					<tbody>
+                            						<tr>
+						     							<th scope="row">1</th>
+						      							<td>Mark</td>
+						      							<td>Otto</td>
+						      							<td>1</td>
+						      							<td>70000</td>
+						      							<td>70000</td>
+						    						</tr>
+						    						<tr>
+						     							<th scope="row">2</th>
+						      							<td>Mark</td>
+						      							<td>Otto</td>
+						      							<td>1</td>
+						      							<td>100000</td>
+						      							<td>100000</td>
+						    						</tr>
+						    						<tr>
+						     							<th scope="row">3</th>
+						      							<td>Mark</td>
+						      							<td>Otto</td>
+						      							<td>1</td>
+						      							<td>50000</td>
+						      							<td>50000</td>
+						    						</tr>
+                            					</tbody>
+                            					<tfoot>
+                            						<tr>
+                            							<td rowspan="2" class="font-weight-bolder">Ghi chú</td>
+                            							<td rowspan="2" colspan="3">{{$donhang->ghichu}}</td>
+                            							<td class="font-weight-bolder">Phí ship</td>
+                            							<td>{{$donhang->phiship}}</td>
+                            						</tr>
+                            						<tr>
+                            							<td class="font-weight-bolder">Tổng tiền</td>
+                            							<td>250000</td>
+                            						</tr>
+                            					</tfoot>
+                            				</table>
+                            				<div class="font-weight-bolder mb-5 mt-3" style="width:100%;">
+                            					<div class="w-25 d-inline-block">Confirmed by: {{$donhang->confirmed_by}}</div>
+                            					<div class="w-50 d-inline-block">Confirmed date: {{$donhang->confirmed_at}}</div>
+                            				</div>
+                            			</div>
                             		</div>
-                            		<button id="btn_sua"type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%">Chỉnh sửa</button>
-                            		<a class="btn btn-primary mt-1 float-right" style="width:15%" href="#" onclick="deleteRecord({{$dh_online->id}})">Xóa</a>
+                            		<button id="btn_sua"" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%">Duyệt đơn hàng</button>
                             	</form>
                             </div>
-                        </div>
+                        </div>                        
 </div>
-
-<script>
-	function deleteRecord(id){
-    		if (confirm("Bạn chắc chắn muốn xóa bản ghi này?")){
-    			let url = "{{ route('donhang.destroy', '') }}"+"/"+id;
-                let token   = $('input[name="_token"]').val();
-                console.log(url);
-                console.log(token);
-
-                $.ajax({
-                    url: url,
-                    type: 'DELETE',
-                    data: {
-                    _token: token
-                    },
-                    success: function(response) {
-						window.location = "/donhang"
-                    }
-                });
-    		}
-    	}
-</script>
 @endsection
