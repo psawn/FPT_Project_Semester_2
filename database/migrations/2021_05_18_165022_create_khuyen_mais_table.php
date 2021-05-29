@@ -22,8 +22,8 @@ class CreateKhuyenMaisTable extends Migration
             $table->date('ngaybatdau');
             $table->date('ngayketthuc');
             $table->boolean('is_active');
-            $table->string('nguoitao',500)->nullable();
-            $table->string('nguoisua',500)->nullable();
+            $table->string('created_by',500)->nullable();
+            $table->string('updated_by',500)->nullable();
             $table->timestamps();
         });
             DB::statement('ALTER TABLE khuyen_mais ADD CONSTRAINT chk_phantramkhuyenmai CHECK (phantramkhuyenmai <= 100 AND phantramkhuyenmai>=0);');
