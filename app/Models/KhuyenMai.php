@@ -11,5 +11,7 @@ class KhuyenMai extends Model
     protected $table = "khuyen_mais";
     protected $fillable = ["tieude","phantramkhuyenmai","noidung","ngaybatdau","ngayketthuc","is_active","created_by","updated_by"];
     protected $dates = ['ngaybatdau','ngayketthuc'];
-    
+    public function KhuyenMaiSach() {
+        return $this->hasMany(KhuyenMaiSach::class,"id_khuyenmai");
+    }
 }

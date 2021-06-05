@@ -3,7 +3,7 @@
 <div class="container-fluid">
                         <div class="mt-4">
                         	<h1>Khuyến mại
-                        		<a class="btn btn-primary float-right" style="width: 15%" href="{{ url('khuyenmai/create')}}">
+                        		<a class="btn btn-primary float-right" style="width: 15%" href="{{ url('admin/khuyenmai/create')}}">
                         			Thêm
                         		</a>
                         	</h1> 	
@@ -47,7 +47,12 @@
                                                 <td>{{$khuyenmai->phantramkhuyenmai}}</td>
                                                 <td>{{$khuyenmai->ngaybatdau->format('d/m/Y')}}</td>
                                                 <td>{{$khuyenmai->ngayketthuc->format('d/m/Y')}}</td>
-                                                <td>{{$khuyenmai->is_active}}</td>
+                                                <td>
+                                                @if($khuyenmai->is_active==1)
+                                                	Không ẩn
+                                                @else Ẩn	
+                                                @endif
+                                                </td>
                                                 <td><a href="{{ route('khuyenmai.edit',$khuyenmai->id) }}">Xem</a></td>
                                             </tr>
 											@endforeach

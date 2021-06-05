@@ -8,7 +8,7 @@
                         </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ url('/khuyenmai') }}">Khuyến mại</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/admin/khuyenmai') }}">Khuyến mại</a></li>
                             <li class="breadcrumb-item active">Thêm</li>
                         </ol>
                         <div class="card mb-4">
@@ -72,7 +72,7 @@
                                             		<div class="container-fluid">Người tạo</div>
                                         		</td>
                                         		<td colspan="5">
-                                                	<input name="nguoitao" id="nguoitao" value="admin" readonly>
+                                                	<input name="created_by" id="created_by" value="admin" readonly>
                                         		</td>
                                     		</tr>
                             			</table>

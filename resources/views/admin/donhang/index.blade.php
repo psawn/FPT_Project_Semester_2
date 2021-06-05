@@ -21,8 +21,7 @@
                                                 <th>ID</th>
                                                 <th>ID User</th>
                                                 <th>Created at</th>
-                                                <th>Confirmed by</th>
-                                                <th>Is active</th>
+                                                <th>Trạng thái</th>
                                                 <th>Chi tiết</th>
                                             </tr>
                                         </thead>
@@ -31,8 +30,7 @@
                                             	<th>ID</th>
                                                 <th>ID User</th>
                                                 <th>Created at</th>
-                                                <th>Confirmed by</th>
-                                                <th>Is active</th>
+                                                <th>Trạng thái</th>
                                                 <th>Chi tiết</th>
                                             </tr>
                                         </tfoot>
@@ -43,13 +41,20 @@
                                                 <td>{{$donhang->User->username}}</td>
                                                 <td>{{$donhang->created_at}}</td>
                                                 <td>
-                                                @if($donhang->confirmed_by=='')
-                                                	NULL
-                                                @else 
-                                                	{{$donhang->confirmed_by}}	
+                                                @if($donhang->trangthai==0)
+                                                	Chờ xác nhận
+                                                @elseif($donhang->trangthai==1)
+                                                	Xác nhận đơn hàng
+                                                @elseif($donhang->trangthai==2)
+                                                	Xác nhận có hàng
+                                                @elseif($donhang->trangthai==3)
+                                                	Đang giao
+                                                @elseif($donhang->trangthai==4)
+                                                	Đã giao
+                                                @elseif($donhang->trangthai==5)
+                                                	Đã hủy			
                                                 @endif
                                                 </td>
-                                                <td>{{$donhang->is_active}}</td>
                                                 <td><a href="{{ route('donhang.edit',$donhang->id) }}">Xem</a></td>
                                             </tr>
 											@endforeach

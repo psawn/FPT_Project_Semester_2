@@ -5,6 +5,7 @@ use App\Models\KhuyenMai;
 use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\DonHangController;
+use App\Http\Controllers\SachController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,11 @@ Route::get('/layout-static', function () {
 Route::get('/layout-sidenav-light', function () {
     return view('admin.layout-sidenav-light');
 });
+//Route::get("khuyenmai/{khuyenmai}/{sach}/add", 'App\Http\Controllers\KhuyenMaiController@add')->name('khuyenmai.add');
+Route::get("khuyenmai/add",'App\Http\Controllers\KhuyenMaiController@add')->name('khuyenmai.add');
+Route::post("khuyenmai/add/{khuyenmai}/{sach}",'App\Http\Controllers\KhuyenMaiController@add');
 Route::resource("admin/khuyenmai", KhuyenMaiController::class);
 Route::resource("admin/danhmuc", DanhMucController::class);
 Route::resource("admin/donhang", DonHangController::class);
+Route::resource("admin/sach", SachController::class);
+

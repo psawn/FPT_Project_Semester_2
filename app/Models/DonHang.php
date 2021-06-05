@@ -13,4 +13,7 @@ class DonHang extends Model
     public function User() {
         return $this->belongsTo(User::class,"id_user");
     }
+    public function TrangThaiDonHang() {
+        return $this->hasMany(TrangThaiDonHang::class,"id_donhang");
+    }
 }

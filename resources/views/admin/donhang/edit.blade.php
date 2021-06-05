@@ -14,9 +14,6 @@
                             	<span class="font-weight-bolder text-info">Chi tiết đơn hàng</span>
                             </div>
                             <div class="card-body">
-                            	<form id="form_sua" action="{{ route('donhang.update', $donhang->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
-                            	@csrf
-                            	@method("patch")
                             		<div class="table-responsive">
                             			<table class="table table-bordered" width="100%" cellspacing="0">
                             				 <tr>
@@ -121,15 +118,66 @@
                             						</tr>
                             					</tfoot>
                             				</table>
-                            				<div class="font-weight-bolder mb-5 mt-3" style="width:100%;">
-                            					<div class="w-25 d-inline-block">Confirmed by: {{$donhang->confirmed_by}}</div>
-                            					<div class="w-50 d-inline-block">Confirmed date: {{$donhang->confirmed_at}}</div>
-                            				</div>
                             			</div>
                             		</div>
-                            		<button id="btn_sua"" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%">Duyệt đơn hàng</button>
-                            	</form>
                             </div>
-                        </div>                        
+                        </div>               
 </div>
+<div class="container-fluid">
+						<div class="card mb-4">
+							<div class="card-header">
+								<i class="fas fa-edit mr-1" ></i>
+                            	<span class="font-weight-bolder text-info">Trạng thái đơn hàng</span>
+							</div>
+							<div class="card-body">
+								@foreach($donhang->TrangThaiDonHang as $trangthaidonhang)
+									@if($trangthaidonhang->trangthai==1)
+									<div>Xác nhận đơn hàng - by : {{$trangthaidonhang->confirmed_by}} at: {{$trangthaidonhang->confirmed_at}}</div>
+									@endif
+									@if($trangthaidonhang->trangthai==2)
+									<div>Xác nhận có hàng - by : {{$trangthaidonhang->confirmed_by}} at: {{$trangthaidonhang->confirmed_at}}</div>
+									@endif
+									@if($trangthaidonhang->trangthai==3)
+									<div>Bắt đầu giao - by : {{$trangthaidonhang->confirmed_by}} at: {{$trangthaidonhang->confirmed_at}}</div>
+									@endif
+									@if($trangthaidonhang->trangthai==4)
+									<div>Đã giao - by : {{$trangthaidonhang->confirmed_by}} at: {{$trangthaidonhang->confirmed_at}}</div>
+									@endif
+									@if($trangthaidonhang->trangthai==5)
+									<div>Đã hủy - by : {{$trangthaidonhang->confirmed_by}} at: {{$trangthaidonhang->confirmed_at}}</div>
+									@else
+									@endif
+									<?php $t1= $donhang->trangthai?>
+								@endforeach
+								
+								<form id="form_sua" action="{{ route('donhang.update', $donhang->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
+								@csrf
+								@method("patch")
+								@if(!isset($t1))
+								<input name="trangthai" id="trangthai" value="1" hidden>
+								<button id="btn_sua"" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%;height:70px">Xác nhận đơn hàng</button>
+								@endif				
+								@if(isset($t1) && $t1==1)
+								<input name="trangthai" id="trangthai" value="2" hidden>
+								<button id="btn_sua"" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%;height:70px">Xác nhận có hàng</button>
+								@endif	
+								@if(isset($t1) && $t1==2)
+								<input name="trangthai" id="trangthai" value="3" hidden>
+								<button id="btn_sua"" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%;height:70px">Xác nhận bắt đầu giao hàng</button>
+								@endif		
+								@if(isset($t1) && $t1==3)
+								<input name="trangthai" id="trangthai" value="4" hidden>
+								<button id="btn_sua"" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%;height:70px">Xác nhận đã giao hàng</button>
+								@endif									
+								</form>
+								<form id="form_sua" action="{{ route('donhang.update', $donhang->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
+								@csrf
+								@method("patch")
+								<input name="trangthai" id="trangthai" value="5" hidden>
+								<button id="btn_sua"" type="submit" class="btn btn-danger mt-1 float-right" style="width: 15%;height:70px">Hủy đơn hàng</button>
+								</form>
+							</div>
+							
+						</div>
+</div>         
 @endsection

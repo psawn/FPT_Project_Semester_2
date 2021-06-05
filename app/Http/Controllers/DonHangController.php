@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DonHang;
+use App\Models\TrangThaiDonHang;
 
 class DonHangController extends Controller
 {
@@ -77,13 +78,24 @@ class DonHangController extends Controller
     {
         $donhang = DonHang::find($id);
         if($donhang){
-            $donhang->confirmed_by="admin";
-            $donhang->confirmed_at = now();
-            $donhang->is_active=1;
+            $donhang->trangthai=$request->trangthai;
             $donhang->save();
-            return redirect()->route('donhang.index')->with("success","Xác nhận đơn hàng thành công");
+            
+            $trangthaidonhang = new TrangThaiDonHang();
+            $trangthaidonhang->id_donhang = $id;
+            $trangthaidonhang->trangthai = $request->trangthai;
+            $trangthaidonhang->confirmed_by = "admin";
+            $trangthaidonhang->confirmed_at = now();
+            try {
+                $trangthaidonhang->save();
+            } catch (\Exception $e) {
+                if ($e->getCode() == 23000) {
+                    return redirect()->route('donhang.edit',$id)->with("error","Đơn hàng đã hủy");
+                }
+            }
+            return redirect()->route('donhang.index')->with("success","Xác nhận thành công");
         } else {
-            return redirect()->route('donhang.index')->with("error","Xác nhận đơn hàng không thành công");
+            return redirect()->route('donhang.index')->with("error","Xác nhận không thành công");
         }
     }
 

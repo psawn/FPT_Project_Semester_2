@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Models\KhuyenMai;
+use App\Models\KhuyenMaiSach;
+use App\Models\Sach;
 
 class KhuyenMaiController extends Controller
 {
@@ -60,7 +62,7 @@ class KhuyenMaiController extends Controller
         $khuyenmai ->ngayketthuc = $request->ngayketthuc;
         $khuyenmai ->tieude = $request->tieude;
         $khuyenmai ->noidung = $request->noidung;
-        $khuyenmai ->nguoitao = $request->nguoitao;
+        $khuyenmai ->created_by = $request->created_by;
         $res = $khuyenmai->save();
         return redirect()->route('khuyenmai.index')->with("success","Thêm mới thành công");
     }
@@ -83,10 +85,11 @@ class KhuyenMaiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
+        $saches = Sach::all();
         $khuyenmai = KhuyenMai::find($id);
         if($khuyenmai) {
-            return view("admin.khuyenmai.edit",compact('khuyenmai'));
+            return view("admin.khuyenmai.edit",compact('khuyenmai','saches'));
         } else {
             return redirect()->route("khuyenmai.index");
         }
@@ -110,7 +113,7 @@ class KhuyenMaiController extends Controller
                 'ngayketthuc'=>'required',
                 'tieude'=> 'required',
                 'noidung'=>'required',
-                'nguoitao'=>'required'
+                'created_by'=>'required'
             ], [
                 'phantramkhuyenmai.required'=>'Phần trăm không được để trống',
                 'is_active.required'=>'Is_Active không được để trống',
@@ -118,7 +121,7 @@ class KhuyenMaiController extends Controller
                 'ngayketthuc.mimes'=>'Ngày không được để trống',
                 'tieude.max'=>'Tiêu đề không được để trống',
                 'noidung.required' =>'Nội dung không được để trống',
-                'nguoitao.required' =>'Người tạo không được để trống',
+                'created_by.required' =>'Người tạo không được để trống',
             ]);
             $khuyenmai->phantramkhuyenmai = $request->phantramkhuyenmai;
             $khuyenmai->is_active = $request->is_active;
@@ -126,8 +129,8 @@ class KhuyenMaiController extends Controller
             $khuyenmai->ngayketthuc = $request->ngayketthuc;
             $khuyenmai->tieude = $request->tieude;
             $khuyenmai->noidung = $request->noidung;
-            $khuyenmai->nguoitao = $request->nguoitao;
-            $khuyenmai->nguoisua = $request->nguoisua;
+            $khuyenmai->created_by = $request->created_by;
+            $khuyenmai->updated_by = "update_admin";
             $khuyenmai->save();
             return redirect()->route('khuyenmai.index')->with("success","Cập nhật thành công");
         } else {
@@ -146,4 +149,14 @@ class KhuyenMaiController extends Controller
         $khuyenmai = KhuyenMai::destroy($id);
         return Response::json($khuyenmai);
     }
+    public function add($id,$id_sach)
+    {
+        $khuyenmaisach = new KhuyenMaiSach();
+        $khuyenmaisach->id_sach = $id_sach;
+        $khuyenmaisach->id_khuyenmai = $id;
+        $khuyenmaisach->is_active=1;
+        $khuyenmaisach->created_by="admin";
+        $khuyenmaisach->save();
+    } 
+    
 }
