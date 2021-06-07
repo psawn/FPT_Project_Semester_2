@@ -18,6 +18,7 @@ class CreateSachesTable extends Migration
             $table->integer('id_danhmuc')->unsigned();
             $table->foreign('id_danhmuc')->references('id')->on('danh_mucs');
             $table->string('tensach',200);
+            $table->string('slug',200);
             $table->string('tentacgia',200);
             $table->string('nhaxuatban',200);
             $table->year('namxuatban');

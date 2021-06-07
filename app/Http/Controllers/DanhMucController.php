@@ -75,6 +75,7 @@ class DanhMucController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /*
         $danhmuc = DanhMuc::find($id);
         if($danhmuc) {
             $validated = $request->validate([
@@ -88,6 +89,7 @@ class DanhMucController extends Controller
         } else {
             return redirect()->route('danhmuc.index')->with("error","Cập nhật không thành công");
         }
+        */
     }
 
     /**

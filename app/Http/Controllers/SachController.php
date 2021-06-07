@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;
 use App\Models\Sach;
 use App\Models\DanhMuc;
@@ -68,6 +69,7 @@ class SachController extends Controller
         $sach = new Sach();
         $sach->id_danhmuc = $request->id_danhmuc;
         $sach->tensach = $request->tensach;
+        $sach->slug =  Str::slug($request->tensach,'-');
         $sach->tentacgia = $request->tentacgia;
         $sach->nhaxuatban = $request->nhaxuatban;
         $sach->namxuatban = $request->namxuatban;
