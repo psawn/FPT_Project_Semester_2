@@ -23,7 +23,9 @@ class Sach extends Model
         "tap",
         "anhdaidien",
         "soluong",
-        "is_active"];
+        "is_active",
+        "slug"
+    ];
     public function DanhMuc() {
         return $this->belongsTo(DanhMuc::class,"id_danhmuc");
     }

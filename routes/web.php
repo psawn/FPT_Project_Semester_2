@@ -6,6 +6,9 @@ use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\SachController;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\ChartController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +26,6 @@ Route::get('/', function () {
 });
 Route::get('/tables', function () {
     return view('admin.tables');
-});
-Route::get('/charts', function () {
-    return view('admin.charts');
 });
 Route::get('/login', function () {
     return view('admin.login');
@@ -61,4 +61,5 @@ Route::resource("admin/khuyenmai", KhuyenMaiController::class);
 Route::resource("admin/danhmuc", DanhMucController::class);
 Route::resource("admin/donhang", DonHangController::class);
 Route::resource("admin/sach", SachController::class);
+Route::resource("admin/charts", ChartController::class);
 

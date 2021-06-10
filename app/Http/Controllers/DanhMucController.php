@@ -75,21 +75,31 @@ class DanhMucController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*
+        
         $danhmuc = DanhMuc::find($id);
         if($danhmuc) {
             $validated = $request->validate([
-                'url' => 'required',
+                'slug' => 'required',
             ], [
-                'url.required'=>'URL không được để trống',
+                'slug.required'=>'URL không được để trống',
             ]);
-            $danhmuc->url = $request->url;
-            $danhmuc->save();
-            return redirect()->route('danhmuc.index')->with("success","Cập nhật thành công");
+            $danhmuc->slug = $request->slug;
+            $res = $danhmuc->save();
+            if($res) {
+                alert()->success('Thêm thành công', 'Successfully');
+                return redirect()->route('danhmuc.index');
+                //return redirect()->route('danhmuc.index')->with("success","Cập nhật thành công");
+            } else {
+                alert()->error('Thêm thất bại', 'Something went wrong!');
+                return redirect()->route('danhmuc.index');
+                //return redirect()->route('danhmuc.index')->with("error","Cập nhật không thành công");
+            }
         } else {
-            return redirect()->route('danhmuc.index')->with("error","Cập nhật không thành công");
+            alert()->error('Không tìm thấy bản ghi', 'Something went wrong!');
+            return redirect()->route('danhmuc.index');
+            //return redirect()->route('danhmuc.index')->with("error","Không tìm thấy bản ghi");
         }
-        */
+        
     }
 
     /**

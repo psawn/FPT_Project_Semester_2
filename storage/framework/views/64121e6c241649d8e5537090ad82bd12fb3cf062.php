@@ -8,7 +8,11 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="<?php echo e(asset('admin/dist/css/styles.css')); ?>" rel="stylesheet" /> 
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <link href="<?php echo e(asset('admin/dist/sweetalert2/sweetalert2.min.css')); ?>" rel="stylesheet" /> 
+        <script src="<?php echo e(asset('admin/dist/sweetalert2/sweetalert2.min.js')); ?>"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -91,7 +95,7 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="<?php echo e(url('/charts')); ?>">
+                            <a class="nav-link" href="<?php echo e(url('/admin/charts')); ?>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
                             </a>
@@ -110,6 +114,7 @@
             <div id="layoutSidenav_content">
             	<main>
             		<?php echo $__env->yieldContent("content"); ?>
+            		<?php echo $__env->make('sweetalert::alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             	</main>
             	<footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
@@ -125,7 +130,7 @@
                 </footer>
             </div>       
         </div>
-       	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+       	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo e(asset('admin/dist/js/scripts.js')); ?>"></script>  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -134,7 +139,8 @@
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo e(asset('admin/dist/assets/demo/datatables-demo.js')); ?>"></script>
-        <script src="<?php echo e(asset('admin/dist/assets/demo/chart-pie-demo.js')); ?>"></script>
+        <?php echo $__env->yieldContent("script"); ?>
+        <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     </body>
 </html>
 <?php /**PATH C:\xampp\htdocs\fpt_project2\resources\views/layouts/template.blade.php ENDPATH**/ ?>

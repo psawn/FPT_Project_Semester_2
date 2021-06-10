@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//app/Http/Controllers/DanhMucController.php=UTF-8
+encoding//app/Http/Controllers/DonHangController.php=UTF-8
+encoding//app/Http/Controllers/KhuyenMaiController.php=UTF-8
+encoding//app/Http/Controllers/SachController.php=UTF-8
+encoding//public/admin/dist/js/scripts.js=UTF-8
+encoding//resources/views/admin/charts/charts.blade.php=UTF-8
+encoding//resources/views/admin/danhmuc/edit.blade.php=UTF-8
+encoding//resources/views/admin/danhmuc/index.blade.php=UTF-8
+encoding//resources/views/admin/donhang/edit.blade.php=UTF-8
+encoding//resources/views/admin/donhang/index.blade.php=UTF-8
+encoding//resources/views/admin/khuyenmai/create.blade.php=UTF-8
+encoding//resources/views/admin/khuyenmai/edit.blade.php=UTF-8
+encoding//resources/views/admin/khuyenmai/index.blade.php=UTF-8
+encoding//resources/views/admin/sach/create.blade.php=UTF-8
+encoding//resources/views/admin/sach/edit.blade.php=UTF-8
+encoding//resources/views/admin/sach/index.blade.php=UTF-8

@@ -20,3 +20,15 @@
         $("body").toggleClass("sb-sidenav-toggled");
     });
 })(jQuery);
+
+		if(document.getElementById("status_active1")){
+    		if(document.getElementById("status_active1").value==1) {
+    			document.getElementById("status_active1").innerHTML="Không ẩn";
+    			document.getElementById("status_active2").innerHTML="Ẩn";
+    			document.getElementById("status_active2").value=0;
+    		} else {
+    			document.getElementById("status_active1").innerHTML="Ẩn";
+    			document.getElementById("status_active2").innerHTML="Không ẩn";
+    			document.getElementById("status_active2").value=1;
+    		}
+    	}

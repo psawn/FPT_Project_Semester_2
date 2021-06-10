@@ -16,6 +16,15 @@
                             <div class="card-body">
                             	<form id="form_sua" action="{{ route('danhmuc.update', $danhmuc->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
                             	@csrf
+                            	@if($errors->any())
+      							<div id="error" style="display:none" class="alert alert-danger">
+      								<ul>
+      								@foreach($errors->all() as $error)
+      									<li>{{ $error }}</li>
+      								@endforeach
+      								</ul>
+      							</div>
+      							@endif
                             	@method("patch")
                             		<div class="table-responsive">
                             			<table class="table table-bordered" width="100%" cellspacing="0">
@@ -49,10 +58,10 @@
                             				 </tr>
                             				 <tr>
                                         		<td class="font-weight-bolder">
-                                            		<div class="container-fluid">URL</div>
+                                            		<div class="container-fluid">Slug URL</div>
                                         		</td>
-                                        		<td colspan="3">
-                                               		<textarea name="url" id="url" class="container-fluid" rows="3">{{$danhmuc->url}}</textarea>
+                                        		<td colspan="2">
+                                               		<textarea name="slug" id="slug" class="container-fluid" rows="3" >{{$danhmuc->slug}}</textarea>
                                         		</td>
                                     		</tr>
                                     		<tr>
@@ -90,4 +99,16 @@
                             </div>
                         </div>                        
 </div>
+<script>
+	let has_error = {{ $errors->any() > 0 ? 'true' : 'false'}};
+	if(has_error) {
+		Swal.fire({
+  			title: 'Errors',
+  			icon: 'error',
+  			html: jQuery("#error").html(),
+  			showCloseButton: true,
+  			timer: 5000,
+		})
+	}
+</script>
 @endsection

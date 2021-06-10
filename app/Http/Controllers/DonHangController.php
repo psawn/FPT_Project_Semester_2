@@ -90,12 +90,18 @@ class DonHangController extends Controller
                 $trangthaidonhang->save();
             } catch (\Exception $e) {
                 if ($e->getCode() == 23000) {
-                    return redirect()->route('donhang.edit',$id)->with("error","Đơn hàng đã hủy");
+                    alert()->error('Đơn hàng đã hủy', 'Something went wrong!');
+                    return redirect()->route('donhang.edit',$id);
+                    //return redirect()->route('donhang.edit',$id)->with("error","Đơn hàng đã hủy");
                 }
             }
-            return redirect()->route('donhang.index')->with("success","Xác nhận thành công");
+            alert()->success('Xác nhận thành công', 'Successfully');
+            return redirect()->route('donhang.index');
+            //return redirect()->route('donhang.index')->with("success","Xác nhận thành công");
         } else {
-            return redirect()->route('donhang.index')->with("error","Xác nhận không thành công");
+            alert()->error('Xác nhận không thành công', 'Something went wrong!');
+            return redirect()->route('donhang.index');
+            //return redirect()->route('donhang.index')->with("error","Xác nhận không thành công");
         }
     }
 

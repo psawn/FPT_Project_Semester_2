@@ -21,6 +21,15 @@
                             <div class="card-body">
                             	<form id="form_sua" action="{{ route('khuyenmai.update', $khuyenmai->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
                             	@csrf
+                            	@if($errors->any())
+      							<div id="error" style="display:none" class="alert alert-danger">
+      								<ul>
+      								@foreach($errors->all() as $error)
+      									<li>{{ $error }}</li>
+      								@endforeach
+      								</ul>
+      							</div>
+      							@endif
                             	@method("patch")
                             		<div class="table-responsive">
                             			<table class="table table-bordered" width="100%" cellspacing="0">
@@ -218,6 +227,13 @@
                     _token: token
                     },
                     success: function(response) {
+                    	Swal.fire({
+                			title: 'Success',
+  							icon: 'success',
+  							html: 'Xóa thành công',
+  							confirmButtonText: 'OK',
+  							timer: 5000,
+						})
 						window.location = "/admin/khuyenmai"
                     }
                 });
@@ -226,16 +242,34 @@
     function add(id_khuyenmai,id_sach){
     	let url = "{{ route('khuyenmai.add', '') }}"+"/"+id_khuyenmai+"/"+id_sach;
     	let token   = $('input[name="_token"]').val();
-    			$.ajax({
-                    url: url,
-                    type: 'POST',
-                    data: {
-                    _token: token
-                    },
-                    success: function(response) {
-						window.location = "/admin/khuyenmai"
-                    }
-                });
-    }	
+    	
+    	$.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+            _token: token
+            },
+			success: function(response) {
+				Swal.fire({
+                title: 'Success',
+  				icon: 'success',
+  				html: 'Xóa thành công',
+  				confirmButtonText: 'OK',
+  				timer: 5000,
+			})
+			window.location = "/admin/khuyenmai"
+			}
+ 		});
+    }
+    let has_error = {{ $errors->any() > 0 ? 'true' : 'false'}};
+	if(has_error) {
+		Swal.fire({
+  			title: 'Errors',
+  			icon: 'error',
+  			html: jQuery("#error").html(),
+  			showCloseButton: true,
+  			timer: 5000,
+		})
+	}	
 </script>
 @endsection

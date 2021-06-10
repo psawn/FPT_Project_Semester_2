@@ -18,6 +18,15 @@
                             <div class="card-body">
                             	<form id="form_them" action="{{ route('khuyenmai.store') }}" method="post" autocomplete="off" enctype="multipart/form-data">
                             	@csrf
+                            	@if($errors->any())
+      							<div id="error" style="display:none" class="alert alert-danger">
+      								<ul>
+      								@foreach($errors->all() as $error)
+      									<li>{{ $error }}</li>
+      								@endforeach
+      								</ul>
+      							</div>
+      							@endif
                             		<div class="table-responsive">
                             			<table class="table table-bordered" width="100%" cellspacing="0">
                             				 <tr>
@@ -81,5 +90,17 @@
                             	</form>
                             </div>
                         </div>
-                    </div>
+</div>
+<script>
+	let has_error = {{ $errors->any() > 0 ? 'true' : 'false'}};
+	if(has_error) {
+		Swal.fire({
+  			title: 'Errors',
+  			icon: 'error',
+  			html: jQuery("#error").html(),
+  			showCloseButton: true,
+  			timer: 5000,
+		})
+	}
+</script>
 @endsection

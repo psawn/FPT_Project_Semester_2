@@ -9,7 +9,7 @@ class DanhMuc extends Model
 {
     use HasFactory;
     protected $table = "danh_mucs";
-    //protected $fillable = ["url","updated_by"];
+    protected $fillable = ["slug","updated_by"];
     public function Sach() {
         return $this->hasMany(Sach::class,"id_danhmuc");
     }

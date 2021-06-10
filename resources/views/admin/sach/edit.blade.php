@@ -21,6 +21,15 @@
                             <div class="card-body">
 								<form id="form_sua" action="{{ route('sach.update',$sach->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
                             	@csrf
+                            	@if($errors->any())
+      							<div id="error" style="display:none" class="alert alert-danger">
+      								<ul>
+      								@foreach($errors->all() as $error)
+      									<li>{{ $error }}</li>
+      								@endforeach
+      								</ul>
+      							</div>
+      							@endif
                             	@method("patch")
                             		<div class="table-responsive">
                             			<table class="table table-bordered" width="100%" cellspacing="0">
@@ -168,23 +177,40 @@
 		}
 	}
 	function deleteRecord(id){
-    		if (confirm("Bạn chắc chắn muốn xóa bản ghi này?")){
-    			let url = "{{ route('sach.destroy', '') }}"+"/"+id;
-                let token   = $('input[name="_token"]').val();
-                console.log(url);
-                console.log(token);
+    	if (confirm("Bạn chắc chắn muốn xóa bản ghi này?")){
+    		let url = "{{ route('sach.destroy', '') }}"+"/"+id;
+            let token   = $('input[name="_token"]').val();
+            console.log(url);
+            console.log(token);
                 
-                $.ajax({
-                    url: url,
-                    type: 'DELETE',
-                    data: {
-                    _token: token
-                    },
-                    success: function(response) {
-						window.location = "/admin/sach"
-                    }
-                });
-    		}
+            $.ajax({
+            	url: url,
+                type: 'DELETE',
+                data: {
+                _token: token
+                },
+                success: function(response) {
+                	Swal.fire({
+                		title: 'Success',
+  						icon: 'success',
+  						html: 'Xóa thành công',
+  						confirmButtonText: 'OK',
+  						timer: 5000,
+					})
+					window.location = "/admin/sach"
+                }
+            });
     	}
+    }
+    		let has_error = {{ $errors->any() > 0 ? 'true' : 'false'}};
+	if(has_error) {
+		Swal.fire({
+  			title: 'Errors',
+  			icon: 'error',
+  			html: jQuery("#error").html(),
+  			showCloseButton: true,
+  			timer: 5000,
+		})
+	}
 </script>
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;
 use App\Models\Sach;
 use App\Models\DanhMuc;
+use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class SachController extends Controller
@@ -59,12 +60,13 @@ class SachController extends Controller
             'is_active.required' => 'Is active không được để trống',
             'tensach.required' => 'Tên sách là chuỗi có độ dài không quá 200',
             'tentacgia.required' => 'Tên tác giả là chuỗi có độ dài không quá 200',
+            'nhaxuatban.required' => 'Nhà xuất bản là chuỗi có độ dài không quá 200',
             'namxuatban.required' => 'Năm xuất bản lớn hơn năm 2000',
             'gianhap.required' => 'Giá nhập là số lớn hơn bằng 0',
             'giaban.required' => 'Giá bán là số lớn hơn bằng 0',
             'tap' => 'Tập là số lớn hơn bằng 1',
             'anhdaidien.required' => 'Link ảnh đại diện có độ dài không quá 500',
-            'soluong' => 'Số lượng là số lớn hơn bằng 1'
+            'soluong.required' => 'Số lượng là số lớn hơn bằng 1'
         ]);
         $sach = new Sach();
         $sach->id_danhmuc = $request->id_danhmuc;
@@ -81,8 +83,14 @@ class SachController extends Controller
         $sach->anhdaidien = $request->anhdaidien;
         $sach->soluong = $request->soluong;
         $sach->is_active = $request->is_active;
-        $sach->save();
-        return redirect()->route('sach.index')->with("success","Thêm thành công");
+        $res = $sach->save();
+        if($res){
+            alert()->success('Thêm thành công', 'Successfully');
+            return redirect()->route('sach.index');
+        } else {
+            alert()->error('Thêm thất bại', 'Something went wrong!');
+            return redirect()->route('sach.index');
+        }
     }
 
     /**
@@ -162,10 +170,20 @@ class SachController extends Controller
             $sach->anhdaidien = $request->anhdaidien;
             $sach->soluong = $request->soluong;
             $sach->is_active = $request->is_active;
-            $sach->save();
-            return redirect()->route('sach.index')->with("success","Cập nhật thành công");
+            $res = $sach->save();
+            if($res){
+                alert()->success('Update thành công', 'Successfully');
+                return redirect()->route('sach.index');
+                //return redirect()->route('sach.index')->with("success","Cập nhật thành công");
+            }else {
+                alert()->error('Update thất bại', 'Something went wrong!');
+                return redirect()->route("sach.index");
+                //return redirect()->route("sach.index")->with("error","Cập nhật không thành công");
+            }
         } else {
-            return redirect()->route("sach.index")->with("error","Cập nhật không thành công");
+            alert()->error('Không tìm thấy bản ghi', 'Something went wrong!');
+            return redirect()->route("sach.index");
+            //return redirect()->route("sach.index")->with("error","Không tìm thấy bản ghi");
         }
     }
 

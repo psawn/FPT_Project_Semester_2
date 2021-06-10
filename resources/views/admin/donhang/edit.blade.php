@@ -152,6 +152,15 @@
 								
 								<form id="form_sua" action="{{ route('donhang.update', $donhang->id) }}" method="post" autocomplete="off" enctype="multipart/form-data">
 								@csrf
+								@if($errors->any())
+      							<div id="error" style="display:none" class="alert alert-danger">
+      								<ul>
+      								@foreach($errors->all() as $error)
+      									<li>{{ $error }}</li>
+      								@endforeach
+      								</ul>
+      							</div>
+      							@endif
 								@method("patch")
 								@if(!isset($t1))
 								<input name="trangthai" id="trangthai" value="1" hidden>
@@ -179,5 +188,17 @@
 							</div>
 							
 						</div>
-</div>         
+</div>       
+<script>
+	let has_error = {{ $errors->any() > 0 ? 'true' : 'false'}};
+	if(has_error) {
+		Swal.fire({
+  			title: 'Errors',
+  			icon: 'error',
+  			html: jQuery("#error").html(),
+  			showCloseButton: true,
+  			timer: 5000,
+		})
+	}
+</script>  
 @endsection

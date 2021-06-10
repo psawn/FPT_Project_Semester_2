@@ -23,14 +23,10 @@ class CreateDanhMucsTable extends Migration
             $table->string('updated_by',500)->nullable();
             $table->timestamps();
         });
-        DB::statement("CREATE FUNCTION NAME_SLUG(tendanhmuccha VARCHAR(100),tendanhmuc VARCHAR(100)) 
-                        RETURNS VARCHAR(100)
-                        RETURN LOWER(REPLACE(CONCAT('/',tendanhmuccha,'/',tendanhmuc), ' ', '-'));
-
-                        CREATE TRIGGER tg_danhmuc_insert
-                        BEFORE INSERT ON danh_mucs
-                        FOR EACH ROW
-                        SET NEW.slug = NAME_SLUG(NEW.tendanhmuccha,NEW.tendanhmuc);");
+        
+        
+                        
+                        
     }
 
     /**

@@ -64,7 +64,14 @@ class KhuyenMaiController extends Controller
         $khuyenmai ->noidung = $request->noidung;
         $khuyenmai ->created_by = $request->created_by;
         $res = $khuyenmai->save();
-        return redirect()->route('khuyenmai.index')->with("success","Thêm mới thành công");
+        if($res) {
+            alert()->success('Thêm thành công', 'Successfully');
+            return redirect()->route('khuyenmai.index');
+            //return redirect()->route('khuyenmai.index')->with("success","Thêm mới thành công");
+        }else {
+            alert()->error('Thêm thất bại', 'Something went wrong!');
+            return redirect()->route('khuyenmai.index');
+        }
     }
 
     /**
@@ -158,5 +165,4 @@ class KhuyenMaiController extends Controller
         $khuyenmaisach->created_by="admin";
         $khuyenmaisach->save();
     } 
-    
 }
