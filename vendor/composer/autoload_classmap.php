@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\ChartController' => $baseDir . '/app/Http/Controllers/ChartController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DanhMucController' => $baseDir . '/app/Http/Controllers/DanhMucController.php',
     'App\\Http\\Controllers\\DonHangController' => $baseDir . '/app/Http/Controllers/DonHangController.php',
@@ -22,6 +23,7 @@ return array(
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\DanhMuc' => $baseDir . '/app/Models/DanhMuc.php',
     'App\\Models\\DonHang' => $baseDir . '/app/Models/DonHang.php',
     'App\\Models\\KhuyenMai' => $baseDir . '/app/Models/KhuyenMai.php',

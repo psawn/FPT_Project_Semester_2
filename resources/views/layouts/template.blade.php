@@ -7,11 +7,11 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
-        <link href="{{ asset('admin/dist/css/styles.css') }}" rel="stylesheet" /> 
+        <link href="{{ asset('admin/dist/css/styles.css') }}" rel="stylesheet" />
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <link href="{{ asset('admin/dist/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" /> 
+        <link href="{{ asset('admin/dist/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
         <script src="{{ asset('admin/dist/sweetalert2/sweetalert2.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -128,14 +128,14 @@
                         </div>
                     </div>
                 </footer>
-            </div>       
+            </div>
         </div>
        	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('admin/dist/js/scripts.js') }}"></script>  
+        <script src="{{ asset('admin/dist/js/scripts.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('admin/dist/assets/demo/chart-area-demo.js') }}"></script> 
-        <script src="{{ asset('admin/dist/assets/demo/chart-bar-demo.js') }}"></script> 
+        <script src="{{ asset('admin/dist/assets/demo/chart-area-demo.js') }}"></script>
+        <script src="{{ asset('admin/dist/assets/demo/chart-bar-demo.js') }}"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('admin/dist/assets/demo/datatables-demo.js') }}"></script>
