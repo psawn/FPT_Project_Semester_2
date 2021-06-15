@@ -44,9 +44,9 @@
 											@foreach ($khuyenmais as $khuyenmai)
 											<tr>
                                                 <td>{{$khuyenmai->id}}</td>
-                                                <td>{{$khuyenmai->phantramkhuyenmai}}</td>
-                                                <td>{{$khuyenmai->ngaybatdau->format('d/m/Y')}}</td>
-                                                <td>{{$khuyenmai->ngayketthuc->format('d/m/Y')}}</td>
+                                                <td>{{$khuyenmai->percentage}}</td>
+                                                <td>{{$khuyenmai->start_date->format('d/m/Y')}}</td>
+                                                <td>{{$khuyenmai->end_date->format('d/m/Y')}}</td>
                                                 <td>
                                                 @if($khuyenmai->is_active==1)
                                                 	Không ẩn

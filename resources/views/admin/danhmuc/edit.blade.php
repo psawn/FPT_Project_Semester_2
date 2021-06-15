@@ -39,7 +39,7 @@
                                             		<div class="container-fluid">Tên danh mục</div>
                                         		</td>
                                         		<td width="25%">
-                                        			<input name="tendanhmuc" id="tendanhmuc" class="container-fluid" value="{{$danhmuc->tendanhmuc}}">
+                                        			<input name="name" id="name" class="container-fluid" value="{{$danhmuc->name}}" readonly>
                                         		</td>
                             				 </tr>
                             				 <tr>
@@ -47,13 +47,13 @@
                                             		<div class="container-fluid">ID danh mục cha</div>
                                         		</td>
                                         		<td width="25%">
-                                        			<input name="iddanhmuccha" id="iddanhmuccha" class="container-fluid" value="{{$danhmuc->iddanhmuccha}}" readonly>
+                                        			<input name="parent_id" id="parent_id" class="container-fluid" value="{{$danhmuc->parent_id}}" readonly>
                                         		</td>
                                         		<td width="25%" class="font-weight-bolder">
                                             		<div class="container-fluid">Tên danh mục cha</div>
                                         		</td>
                                         		<td width="25%">
-                                        			<input name="tendanhmuccha" id="tendanhmuccha" class="container-fluid" value="{{$danhmuc->tendanhmuccha}}">
+                                        			<input name="parent_name" id="parent_name" class="container-fluid" value="{{$danhmuc->parent_name}}" readonly>
                                         		</td>
                             				 </tr>
                             				 <tr>

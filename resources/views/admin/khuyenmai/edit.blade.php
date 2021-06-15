@@ -44,7 +44,7 @@
                                             		<div class="container-fluid">% KM</div>
                                         		</td>
                                         		<td width="16.67%">
-                                        			<input name="phantramkhuyenmai" id="phantramkhuyenmai" class="container-fluid" value="{{$khuyenmai->phantramkhuyenmai}}">
+                                        			<input name="percentage" id="percentage" class="container-fluid" value="{{$khuyenmai->percentage}}">
                                         		</td>
                                         		<td width="16.67%" class="font-weight-bolder">
                                             		<div class="container-fluid">Is Active</div>
@@ -62,13 +62,13 @@
                             				 		<div class="container-fluid">Ngày bắt đầu</div>
                             				 	</td>
                             				 	<td colspan="2">
-                            				 		<input name="ngaybatdau" id="ngaybatdau" class="container-fluid" min="2000-01-01" max="2999-12-31" type="date" value="{{$khuyenmai->ngaybatdau->format('Y-m-d')}}">
+                            				 		<input name="start_date" id="start_date" class="container-fluid" min="2000-01-01" max="2999-12-31" type="date" value="{{$khuyenmai->start_date->format('Y-m-d')}}">
                             				 	</td>
                             				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Ngày kết thúc</div>
                             				 	</td>
                             				 	<td colspan="2">
-                            				 		<input name="ngayketthuc" id="ngayketthuc" class="container-fluid" min="2000-01-01" max="2999-12-31" type="date" value="{{$khuyenmai->ngayketthuc->format('Y-m-d')}}">
+                            				 		<input name="end_date" id="end_date" class="container-fluid" min="2000-01-01" max="2999-12-31" type="date" value="{{$khuyenmai->end_date->format('Y-m-d')}}">
                             				 	</td>
                             				 </tr>
                             				 <tr>
@@ -76,7 +76,7 @@
                                             		<div class="container-fluid">Tiêu đề</div>
                                         		</td>
                                         		<td colspan="5">
-                                               		<textarea name="tieude" class="container-fluid" rows="3">{{$khuyenmai->tieude}}</textarea>
+                                               		<textarea name="title" class="container-fluid" rows="3">{{$khuyenmai->title}}</textarea>
                                         		</td>
                                     		</tr>
                                     		<tr>
@@ -84,7 +84,7 @@
                                             		<div class="container-fluid">Nội dung</div>
                                         		</td>
                                         		<td colspan="5">
-                                                	<textarea name="noidung" class="container-fluid" rows="15">{{$khuyenmai->noidung}}</textarea>
+                                                	<textarea name="content" class="container-fluid" rows="15">{{$khuyenmai->content}}</textarea>
                                         		</td>
                                     		</tr>
                                     		<tr>
@@ -149,11 +149,11 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                        	@foreach($khuyenmai->KhuyenMaiSach as $khuyenmaisach)
+                                        	@foreach($khuyenmai->PromotionBook as $khuyenmaisach)
                                         	<tr>
-                                        		<td>{{$khuyenmaisach->id_sach}}</td>
-                                        		<td><a href="/admin/sach/{{$khuyenmaisach->Sach->id}}/edit">{{$khuyenmaisach->Sach->tensach}}</a></td>
-                                        		<td><img width="100%" src="{{$khuyenmaisach->Sach->anhdaidien}}"></td>
+                                        		<td>{{$khuyenmaisach->book_id}}</td>
+                                        		<td><a href="/admin/sach/{{$khuyenmaisach->Book->id}}/edit">{{$khuyenmaisach->Book->name}}</a></td>
+                                        		<td><img width="100%" src="{{$khuyenmaisach->Book->image}}"></td>
                                         		<td>
                                         		@if($khuyenmaisach->is_active==1)
                                         			Áp dụng	
@@ -199,8 +199,8 @@
                                         	@foreach($saches as $sach)
                                         	<tr>
                                         		<td name="id_sach">{{$sach->id}}</td>
-                                        		<td>{{$sach->tensach}}</td>
-                                        		<td><img width="100%" src="{{$sach->anhdaidien}}"></td>
+                                        		<td>{{$sach->name}}</td>
+                                        		<td><img width="100%" src="{{$sach->image}}"></td>
                                         		<td><a href="#" onclick="add({{$khuyenmai->id}},{{$sach->id}})">Áp dụng</a></td>
                                         		<!-- 
                                         		<td><a href="{{ url('khuyenmai/'.$khuyenmai->id.'/'.$sach->id.'/add/') }}">Áp dụng</a></td>
@@ -231,7 +231,7 @@
                 			title: 'Success',
   							icon: 'success',
   							html: 'Xóa thành công',
-  							confirmButtonText: 'OK',
+  							showCloseButton: true,
   							timer: 5000,
 						})
 						window.location = "/admin/khuyenmai"
@@ -253,8 +253,8 @@
 				Swal.fire({
                 title: 'Success',
   				icon: 'success',
-  				html: 'Xóa thành công',
-  				confirmButtonText: 'OK',
+  				html: 'Áp dụng thành công',
+  				showCloseButton: true,
   				timer: 5000,
 			})
 			window.location = "/admin/khuyenmai"

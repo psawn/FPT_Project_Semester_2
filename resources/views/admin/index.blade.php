@@ -5,44 +5,44 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                         <div class="row"> -->
+<!--                             <div class="col-xl-3 col-md-6"> -->
+<!--                                 <div class="card bg-primary text-white mb-4"> -->
+<!--                                     <div class="card-body">Primary Card</div> -->
+<!--                                     <div class="card-footer d-flex align-items-center justify-content-between"> -->
+<!--                                         <a class="small text-white stretched-link" href="#">View Details</a> -->
+<!--                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="col-xl-3 col-md-6"> -->
+<!--                                 <div class="card bg-warning text-white mb-4"> -->
+<!--                                     <div class="card-body">Warning Card</div> -->
+<!--                                     <div class="card-footer d-flex align-items-center justify-content-between"> -->
+<!--                                         <a class="small text-white stretched-link" href="#">View Details</a> -->
+<!--                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="col-xl-3 col-md-6"> -->
+<!--                                 <div class="card bg-success text-white mb-4"> -->
+<!--                                     <div class="card-body">Success Card</div> -->
+<!--                                     <div class="card-footer d-flex align-items-center justify-content-between"> -->
+<!--                                         <a class="small text-white stretched-link" href="#">View Details</a> -->
+<!--                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <div class="col-xl-3 col-md-6"> -->
+<!--                                 <div class="card bg-danger text-white mb-4"> -->
+<!--                                     <div class="card-body">Danger Card</div> -->
+<!--                                     <div class="card-footer d-flex align-items-center justify-content-between"> -->
+<!--                                         <a class="small text-white stretched-link" href="#">View Details</a> -->
+<!--                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
@@ -56,10 +56,10 @@
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-bar mr-1"></i>
-                                        Bar Chart Example
+                                        <i class="fas fa-chart-pie mr-1"></i>
+                                        Books in stock
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>
@@ -555,4 +555,47 @@
                         </div>
                     </div>
                     
+@endsection
+@section("script")
+<script>
+var ctx = document.getElementById("myPieChart");
+if(@json($saches)){
+    const groupedData = @json($saches).reduce((agr, item) => {
+        let x = (agr[item.parent_id] ??= { parent_name:item.parent_name ,quantity: 0 });
+        x.quantity = x.quantity+item.quantity;
+        return agr;
+    }, {});
+    
+    const result = Object.entries(groupedData).reduce((agr, item) => {
+            agr.push(item);
+            return agr;
+        }, []);
+    // mảng danh mục sách
+    const bookCategories = result.map((e)=>{
+        return e[1].parent_name;
+    })
+    // mảng số lượng sách mỗi danh mục
+    const bookNumbers = result.map((e)=>{
+        return e[1].quantity;
+    })
+    
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
+    
+    // Pie Chart Example
+    var myPieChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: bookCategories,
+        datasets: [{
+          data: bookNumbers,
+          backgroundColor: ['#007bff', '#dc3545', '#ffc107'],
+        }],
+      },
+    });
+}else {
+	ctx.innerHTML = "<h4>Chưa có dữ liệu</h4>"
+}
+</script>
 @endsection

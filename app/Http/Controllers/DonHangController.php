@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DonHang;
-use App\Models\TrangThaiDonHang;
+use App\Models\Order;
+use App\Models\OrderStatus;
 
 class DonHangController extends Controller
 {
@@ -15,7 +15,7 @@ class DonHangController extends Controller
      */
     public function index()
     {
-        $donhangs = DonHang::all();
+        $donhangs = Order::all();
         return view("admin.donhang.index", compact('donhangs'));
     }
 
@@ -59,7 +59,7 @@ class DonHangController extends Controller
      */
     public function edit($id)
     {
-        $donhang = DonHang::find($id);
+        $donhang = Order::find($id);
         if($donhang) {
             return view("admin.donhang.edit",compact('donhang'));
         } else {
@@ -76,14 +76,14 @@ class DonHangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $donhang = DonHang::find($id);
+        $donhang = Order::find($id);
         if($donhang){
-            $donhang->trangthai=$request->trangthai;
+            $donhang->status=$request->status;
             $donhang->save();
             
-            $trangthaidonhang = new TrangThaiDonHang();
-            $trangthaidonhang->id_donhang = $id;
-            $trangthaidonhang->trangthai = $request->trangthai;
+            $trangthaidonhang = new OrderStatus();
+            $trangthaidonhang->order_id  = $id;
+            $trangthaidonhang->status = $request->status;
             $trangthaidonhang->confirmed_by = "admin";
             $trangthaidonhang->confirmed_at = now();
             try {

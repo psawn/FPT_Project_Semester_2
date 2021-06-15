@@ -7,11 +7,11 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
-        <link href="{{ asset('admin/dist/css/styles.css') }}" rel="stylesheet" />
+        <link href="{{ asset('admin/dist/css/styles.css') }}" rel="stylesheet" /> 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <link href="{{ asset('admin/dist/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('admin/dist/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" /> 
         <script src="{{ asset('admin/dist/sweetalert2/sweetalert2.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -21,21 +21,21 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
+<!--                 <div class="input-group"> -->
+<!--                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" /> -->
+<!--                     <div class="input-group-append"> -->
+<!--                         <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button> -->
+<!--                     </div> -->
+<!--                 </div> -->
             </form>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <a class="dropdown-item" href="#">Activity Log</a>
-                        <div class="dropdown-divider"></div>
+<!--                         <a class="dropdown-item" href="#">Settings</a> -->
+<!--                         <a class="dropdown-item" href="#">Activity Log</a> -->
+<!--                         <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" href="{{ url('/login') }}">Logout</a>
                     </div>
                 </li>
@@ -52,48 +52,63 @@
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="{{ url('/admin/danhmuc') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Layouts
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                Category
+                                <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ url('/layout-static') }}">Static Navigation</a>
-                                    <a class="nav-link" href="{{ url('/layout-sidenav-light') }}">Light Sidenav</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            <a class="nav-link collapsed" href="{{ url('/admin/book') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Book
+                                <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="{{ url('/login') }}">Login</a>
-                                            <a class="nav-link" href="{{ url('/register') }}">Register</a>
-                                            <a class="nav-link" href="{{ url('/password') }}">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="{{ url('/401') }}">401 Page</a>
-                                            <a class="nav-link" href="{{ url('/404') }}">404 Page</a>
-                                            <a class="nav-link" href="{{ url('/500') }}">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
+                            <a class="nav-link collapsed" href="{{ url('/admin/khuyenmai') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-ad"></i></div>
+                                Promotion
+                                <div class="sb-sidenav-collapse-arrow"></div>
+                            </a>
+                            <a class="nav-link collapsed" href="{{ url('/admin/donhang') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                                Order
+                                <div class="sb-sidenav-collapse-arrow"></div>
+                            </a>
+<!--                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion"> -->
+<!--                                 <nav class="sb-sidenav-menu-nested nav"> -->
+<!--                                     <a class="nav-link" href="{{ url('/layout-static') }}">Static Navigation</a> -->
+<!--                                     <a class="nav-link" href="{{ url('/layout-sidenav-light') }}">Light Sidenav</a> -->
+<!--                                 </nav> -->
+<!--                             </div> -->
+<!--                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"> -->
+<!--                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div> -->
+<!--                                 Pages -->
+<!--                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
+<!--                             </a> -->
+<!--                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion"> -->
+<!--                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages"> -->
+<!--                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"> -->
+<!--                                         Authentication -->
+<!--                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
+<!--                                     </a> -->
+<!--                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages"> -->
+<!--                                         <nav class="sb-sidenav-menu-nested nav"> -->
+<!--                                             <a class="nav-link" href="{{ url('/login') }}">Login</a> -->
+<!--                                             <a class="nav-link" href="{{ url('/register') }}">Register</a> -->
+<!--                                             <a class="nav-link" href="{{ url('/password') }}">Forgot Password</a> -->
+<!--                                         </nav> -->
+<!--                                     </div> -->
+<!--                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError"> -->
+<!--                                         Error -->
+<!--                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
+<!--                                     </a> -->
+<!--                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages"> -->
+<!--                                         <nav class="sb-sidenav-menu-nested nav"> -->
+<!--                                             <a class="nav-link" href="{{ url('/401') }}">401 Page</a> -->
+<!--                                             <a class="nav-link" href="{{ url('/404') }}">404 Page</a> -->
+<!--                                             <a class="nav-link" href="{{ url('/500') }}">500 Page</a> -->
+<!--                                         </nav> -->
+<!--                                     </div> -->
+<!--                                 </nav> -->
+<!--                             </div> -->
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="{{ url('/admin/charts') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -128,14 +143,14 @@
                         </div>
                     </div>
                 </footer>
-            </div>
+            </div>       
         </div>
        	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('admin/dist/js/scripts.js') }}"></script>
+        <script src="{{ asset('admin/dist/js/scripts.js') }}"></script>  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="{{ asset('admin/dist/assets/demo/chart-area-demo.js') }}"></script>
-        <script src="{{ asset('admin/dist/assets/demo/chart-bar-demo.js') }}"></script>
+        <script src="{{ asset('admin/dist/assets/demo/chart-area-demo.js') }}"></script> 
+        <script src="{{ asset('admin/dist/assets/demo/chart-bar-demo.js') }}"></script> 
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('admin/dist/assets/demo/datatables-demo.js') }}"></script>

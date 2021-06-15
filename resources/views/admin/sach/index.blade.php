@@ -33,7 +33,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th width="40%">Tên</th>
-                                                <th>Tác giả</th>
+                                                <th>Nhà xuất bản</th>
                                                 <th>Số lượng</th>
                                                 <th>Trạng thái</th>
                                                 <th>Chi tiết</th>
@@ -43,9 +43,9 @@
                                         @foreach($saches as $sach)
                                         	<tr>
                                         		<td>{{$sach->id}}</td>
-                                        		<td>{{$sach->tensach}}</td>
-                                        		<td>{{$sach->tentacgia}}</td>
-                                        		<td>{{$sach->soluong}}</td>
+                                        		<td>{{$sach->name}}</td>
+                                        		<td>{{$sach->publisher}}</td>
+                                        		<td>{{$sach->quantity}}</td>
                                         		<td>
                                         		@if($sach->is_active==1)
                                                 	Không ẩn

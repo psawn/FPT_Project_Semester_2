@@ -6,13 +6,13 @@
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Charts</li>
                         </ol>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official
-                                <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>
-                                .
-                            </div>
-                        </div>
+<!--                         <div class="card mb-4"> -->
+<!--                             <div class="card-body"> -->
+<!--                                 Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official -->
+<!--                                 <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a> -->
+<!--                                 . -->
+<!--                             </div> -->
+<!--                         </div> -->
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-area mr-1"></i>
@@ -50,8 +50,8 @@
 var ctx = document.getElementById("myPieChart");
 if(@json($saches)){
     const groupedData = @json($saches).reduce((agr, item) => {
-        let x = (agr[item.iddanhmuccha] ??= { tendanhmuccha:item.tendanhmuccha ,soluong: 0 });
-        x.soluong = x.soluong+item.soluong;
+        let x = (agr[item.parent_id] ??= { parent_name:item.parent_name ,quantity: 0 });
+        x.quantity = x.quantity+item.quantity;
         return agr;
     }, {});
     
@@ -61,11 +61,11 @@ if(@json($saches)){
         }, []);
     // mảng danh mục sách
     const bookCategories = result.map((e)=>{
-        return e[1].tendanhmuccha;
+        return e[1].parent_name;
     })
     // mảng số lượng sách mỗi danh mục
     const bookNumbers = result.map((e)=>{
-        return e[1].soluong;
+        return e[1].quantity;
     })
     
     // Set new default font family and font color to mimic Bootstrap's default styling
@@ -86,11 +86,5 @@ if(@json($saches)){
 }else {
 	ctx.innerHTML = "<h4>Chưa có dữ liệu</h4>"
 }
-
-
-
-
-
-
 </script>
 @endsection

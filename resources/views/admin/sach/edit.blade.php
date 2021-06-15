@@ -34,7 +34,7 @@
                             		<div class="table-responsive">
                             			<table class="table table-bordered" width="100%" cellspacing="0">
                             				<tr>
-                            				 	<td width="14%" class="font-weight-bolder">
+                            				 	<td width="16%" class="font-weight-bolder">
                                             		<div class="container-fluid">ID</div>
                                         		</td>
                                         		<td width="16.67%">
@@ -43,10 +43,10 @@
                                         		<td width="16.67%" class="font-weight-bolder">
                                             		<div class="container-fluid">Danh mục</div>
                                         		</td>
-                                        		<td width="21.34%">
-                                        			<select name="id_danhmuc" id="id_danhmuc" class="container-fluid">
+                                        		<td width="20.34%">
+                                        			<select name="category_id" id="category_id" class="container-fluid">
                                         				@foreach($danhmucs as $danhmuc)
-                                        				<option name="option_danhmuc" value="{{$danhmuc->id}}">{{$danhmuc->tendanhmuc}}</option>
+                                        				<option name="option_danhmuc" value="{{$danhmuc->id}}">{{$danhmuc->name}}</option>
                                         				@endforeach
                                         			</select>
                                         			
@@ -54,7 +54,7 @@
                                         		<td width="16.67%" class="font-weight-bolder">
                                             		<div class="container-fluid">Is Active</div>
                                         		</td>
-                                        		<td width="14.67%">
+                                        		<td width="15.67%">
                                         			 <select name="is_active" id="is_active" class="container-fluid">
                                                    		<option id="status_active1" value="{{$sach->is_active}}" selected></option>
                                                    		<option id="status_active2"></option>
@@ -66,35 +66,29 @@
                                             		<div class="container-fluid">Tên sách</div>
                                         		</td>
                                         		<td colspan="5">
-                                               		<textarea name="tensach" class="container-fluid" rows="2">{{$sach->tensach}}</textarea>
+                                               		<textarea name="name" class="container-fluid" rows="2">{{$sach->name}}</textarea>
+                                        		</td>
+                                    		</tr>
+                                    		<tr>
+                                        		<td class="font-weight-bolder">
+                                            		<div class="container-fluid">Mô tả </div>
+                                        		</td>
+                                        		<td colspan="5">
+                                               		<textarea name="description" class="container-fluid" rows="2">{{$sach->description}}</textarea>
                                         		</td>
                                     		</tr>
                                     		<tr>
                                     			<td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Tên tác giả</div>
-                            				 	</td>
-                            				 	<td colspan="2">
-                            				 		<input name="tentacgia" id="tentacgia" class="container-fluid" type="text" value="{{$sach->tentacgia}}">
-                            				 	</td>
-                            				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Tập</div>
                             				 	</td>
                             				 	<td colspan="2">
-                            				 		<input name="tap" id="tap" class="container-fluid" type="text" value="{{$sach->tap}}">
+                            				 		<input name="print_length" id="print_length" class="container-fluid" type="text" value="{{$sach->print_length}}">
                             				 	</td>
-                                    		</tr>
-                                    		<tr>
-                                    			<td class="font-weight-bolder">
+                            				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Số lượng</div>
                             				 	</td>
                             				 	<td colspan="2">
-                            				 		<input name="soluong" id="soluong" class="container-fluid" type="text" value="{{$sach->soluong}}">
-                            				 	</td>
-                            				 	<td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Nơi nhập</div>
-                            				 	</td>
-                            				 	<td colspan="2">
-                            				 		<input name="noinhap" id="noinhap" class="container-fluid" type="text" value="{{$sach->noinhap}}">
+                            				 		<input name="quantity" id=""quantity"" class="container-fluid" type="text" value="{{$sach->quantity}}">
                             				 	</td>
                                     		</tr>
                                     		<tr>
@@ -102,13 +96,13 @@
                             				 		<div class="container-fluid">Giá nhập</div>
                             				 	</td>
                             				 	<td colspan="2">
-                            				 		<input name="gianhap" id="gianhap" class="container-fluid" type="text" value="{{$sach->gianhap}}">
+                            				 		<input name="import_price" id="import_price" class="container-fluid" type="text" value="{{$sach->import_price}}">
                             				 	</td>
                             				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Giá bán</div>
                             				 	</td>
                             				 	<td colspan="2">
-                            				 		<input name="giaban" id="giaban" class="container-fluid" type="text" value="{{$sach->giaban}}">
+                            				 		<input name="price" id="price" class="container-fluid" type="text" value="{{$sach->price}}">
                             				 	</td>
                                     		</tr>
                                     		<tr>
@@ -116,13 +110,13 @@
                             				 		<div class="container-fluid">Nhà xuất bản</div>
                             				 	</td>
                             				 	<td colspan="2">
-                            				 		<input name="nhaxuatban" id="nhaxuatban" class="container-fluid" type="text" value="{{$sach->nhaxuatban}}">
+                            				 		<input name="publisher" id="publisher" class="container-fluid" type="text" value="{{$sach->publisher}}">
                             				 	</td>
                             				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Năm xuất bản</div>
                             				 	</td>
                             				 	<td colspan="2">
-                            				 		<input name="namxuatban" id="namxuatban" class="container-fluid" type="text" value="{{$sach->namxuatban}}">
+                            				 		<input name="publication_year" id="publication_year" class="container-fluid" type="text" value="{{$sach->publication_year}}">
                             				 	</td>
                                     		</tr>
                                     		<tr>
@@ -130,8 +124,8 @@
                                             		<div class="container-fluid">Ảnh đại diện</div>
                                         		</td>
                                         		<td colspan="5">
-                                               		<textarea name="anhdaidien" class="container-fluid" rows="2">{{$sach->anhdaidien}}</textarea>
-                                               		<div><img width="50%" src="{{$sach->anhdaidien}}"></div>
+                                               		<textarea name="image" class="container-fluid" rows="2">{{$sach->image}}</textarea>
+                                               		<div><img width="50%" src="{{$sach->image}}"></div>
                                         		</td>
                                     		</tr>
                                     		<tr>
@@ -164,15 +158,15 @@
                                     		</tr>
                             			</table>
                             		</div>		
-                            		<button id="btn_sua"" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%">Chỉnh sửa</button>
+                            		<button id="btn_sua" type="submit" class="btn btn-primary mt-1 float-left" style="width: 15%">Chỉnh sửa</button>
                             		<a class="btn btn-primary mt-1 float-right" style="width:15%" href="#" onclick="deleteRecord({{$sach->id}})">Xóa</a>
 								</form>
                             </div>
                         </div>
 </div>
 <script>
-	for(var i=0;i<document.getElementById("id_danhmuc").length;i++) {
-		if({{$sach->id_danhmuc}}==document.getElementsByName('option_danhmuc')[i].value) {
+	for(var i=0;i<document.getElementById("category_id").length;i++) {
+		if({{$sach->category_id}}==document.getElementsByName('option_danhmuc')[i].value) {
 			document.getElementsByName('option_danhmuc')[i].setAttribute('selected', 'selected');
 		}
 	}

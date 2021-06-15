@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DanhMuc;
+use App\Models\Category;
 
 class DanhMucController extends Controller
 {
@@ -14,7 +14,7 @@ class DanhMucController extends Controller
      */
     public function index()
     {
-        $danhmucs = DanhMuc::all();
+        $danhmucs = Category::all();
         return view("admin.danhmuc.index", compact('danhmucs'));
     }
 
@@ -58,7 +58,7 @@ class DanhMucController extends Controller
      */
     public function edit($id)
     {
-        $danhmuc = DanhMuc::find($id);
+        $danhmuc = Category::find($id);
         if($danhmuc) {
             return view("admin.danhmuc.edit",compact('danhmuc'));
         } else {
@@ -76,7 +76,7 @@ class DanhMucController extends Controller
     public function update(Request $request, $id)
     {
         
-        $danhmuc = DanhMuc::find($id);
+        $danhmuc = Category::find($id);
         if($danhmuc) {
             $validated = $request->validate([
                 'slug' => 'required',
@@ -85,12 +85,12 @@ class DanhMucController extends Controller
             ]);
             $danhmuc->slug = $request->slug;
             $res = $danhmuc->save();
-            if($res) {
-                alert()->success('Thêm thành công', 'Successfully');
+            if($res==1) {
+                alert()->success('Update thành công ', 'Successfully');
                 return redirect()->route('danhmuc.index');
                 //return redirect()->route('danhmuc.index')->with("success","Cập nhật thành công");
             } else {
-                alert()->error('Thêm thất bại', 'Something went wrong!');
+                alert()->error('Update thất bại', 'Something went wrong!');
                 return redirect()->route('danhmuc.index');
                 //return redirect()->route('danhmuc.index')->with("error","Cập nhật không thành công");
             }

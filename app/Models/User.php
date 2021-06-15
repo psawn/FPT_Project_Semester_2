@@ -9,8 +9,8 @@ class User extends Model
 {
     use HasFactory;
     protected $table = "users";
-    protected $fillable = ["username ","password","email","hoten","phone","created_at","updated_at"];
-    public function DonHang(){
-        return $this->hasMany(DonHang::class,"id_user");
+    protected $fillable = ["email ","password","name","profile_photo_path","created_at","updated_at"];
+    public function Order(){
+        return $this->hasMany(Order::class,"user_id");
     }
 }

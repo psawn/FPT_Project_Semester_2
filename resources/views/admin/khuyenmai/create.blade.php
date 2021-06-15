@@ -34,7 +34,7 @@
                                             		<div class="container-fluid">% KM</div>
                                         		</td>
                                         		<td width="25%">
-                                        			<input name="phantramkhuyenmai" id="phantramkhuyenmai" class="container-fluid" value="">
+                                        			<input name="percentage" id="percentage" class="container-fluid" value="">
                                         		</td>
                                         		<td width="25%" class="font-weight-bolder">
                                             		<div class="container-fluid">Is Active</div>
@@ -51,13 +51,13 @@
                             				 		<div class="container-fluid">Ngày bắt đầu</div>
                             				 	</td>
                             				 	<td colspan="1">
-                            				 		<input name="ngaybatdau" id="ngaybatdau" class="container-fluid" min="2000-01-01" max="2999-12-31" type="date" value="">
+                            				 		<input name="start_date" id="start_date" class="container-fluid" min="2000-01-01" max="2999-12-31" type="date" value="">
                             				 	</td>
                             				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Ngày kết thúc</div>
                             				 	</td>
                             				 	<td colspan="1">
-                            				 		<input name="ngayketthuc" id="ngayketthuc" class="container-fluid" min="2000-01-01" max="2999-12-31" type="date" value="">
+                            				 		<input name="end_date" id="end_date" class="container-fluid" min="2000-01-01" max="2999-12-31" type="date" value="">
                             				 	</td>
                             				 </tr>
                             				 <tr>
@@ -65,7 +65,7 @@
                                             		<div class="container-fluid">Tiêu đề</div>
                                         		</td>
                                         		<td colspan="5">
-                                               		<textarea name="tieude" class="container-fluid" rows="3"></textarea>
+                                               		<textarea name="title" class="container-fluid" rows="3"></textarea>
                                         		</td>
                                     		</tr>
                                     		<tr>
@@ -73,7 +73,7 @@
                                             		<div class="container-fluid">Nội dung</div>
                                         		</td>
                                         		<td colspan="5">
-                                                	<textarea name="noidung" class="container-fluid" rows="15"></textarea>
+                                                	<textarea name="content" class="container-fluid" rows="15"></textarea>
                                         		</td>
                                     		</tr>
                                     		<tr>

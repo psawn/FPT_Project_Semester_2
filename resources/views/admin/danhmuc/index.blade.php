@@ -39,12 +39,12 @@
 											@foreach ($danhmucs as $danhmuc)
 											<tr>
                                                 <td>{{$danhmuc->id}}</td>
-                                                <td>{{$danhmuc->tendanhmuc}}</td>
-                                                <td>{{$danhmuc->iddanhmuccha}}</td>
-                                                <td>{{$danhmuc->tendanhmuccha}}</td>
+                                                <td>{{$danhmuc->name}}</td>
+                                                <td>{{$danhmuc->parent_id}}</td>
+                                                <td>{{$danhmuc->parent_name}}</td>
                                                 <td>
                                                 @if($danhmuc->updated_by=='')
-                                                	NULL
+                                                	
                                                 @else 
                                                 	{{$danhmuc->updated_by}}	
                                                 @endif

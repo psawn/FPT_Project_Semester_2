@@ -37,9 +37,9 @@
                                             		<div class="container-fluid">Danh mục</div>
                                         		</td>
                                         		<td width="34%">
-                                        			<select name="id_danhmuc" id="id_danhmuc" class="container-fluid">
+                                        			<select name="category_id" id="category_id" class="container-fluid">
                                         				@foreach($danhmucs as $danhmuc)
-                                        				<option name="option_danhmuc" value="{{$danhmuc->id}}">{{$danhmuc->tendanhmuc}}</option>
+                                        				<option name="option_danhmuc" value="{{$danhmuc->id}}">{{$danhmuc->name}}</option>
                                         				@endforeach
                                         			</select>
                                         			
@@ -59,35 +59,29 @@
                                             		<div class="container-fluid">Tên sách</div>
                                         		</td>
                                         		<td colspan="3">
-                                               		<textarea name="tensach" class="container-fluid" rows="2"></textarea>
+                                               		<textarea name="name" class="container-fluid" rows="2"></textarea>
+                                        		</td>
+                                    		</tr>
+                                    		<tr>
+                                        		<td class="font-weight-bolder">
+                                            		<div class="container-fluid">Mô tả </div>
+                                        		</td>
+                                        		<td colspan="3">
+                                               		<textarea name="description" class="container-fluid" rows="2"></textarea>
                                         		</td>
                                     		</tr>
                                     		<tr>
                                     			<td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Tên tác giả</div>
-                            				 	</td>
-                            				 	<td>
-                            				 		<input name="tentacgia" id="tentacgia" class="container-fluid" type="text" value="">
-                            				 	</td>
-                            				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Tập</div>
                             				 	</td>
                             				 	<td>
-                            				 		<input name="tap" id="tap" class="container-fluid" type="text" value="">
+                            				 		<input name="print_length" id="print_length" class="container-fluid" type="text" value="">
                             				 	</td>
-                                    		</tr>
-                                    		<tr>
-                                    			<td class="font-weight-bolder">
+                            				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Số lượng</div>
                             				 	</td>
                             				 	<td>
-                            				 		<input name="soluong" id="soluong" class="container-fluid" type="text" value="">
-                            				 	</td>
-                            				 	<td class="font-weight-bolder">
-                            				 		<div class="container-fluid">Nơi nhập</div>
-                            				 	</td>
-                            				 	<td>
-                            				 		<input name="noinhap" id="noinhap" class="container-fluid" type="text" value="">
+                            				 		<input name="quantity" id="quantity" class="container-fluid" type="text" value="">
                             				 	</td>
                                     		</tr>
                                     		<tr>
@@ -95,13 +89,13 @@
                             				 		<div class="container-fluid">Giá nhập</div>
                             				 	</td>
                             				 	<td>
-                            				 		<input name="gianhap" id="gianhap" class="container-fluid" type="text" value="">
+                            				 		<input name="import_price" id="import_price" class="container-fluid" type="text" value="">
                             				 	</td>
                             				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Giá bán</div>
                             				 	</td>
                             				 	<td>
-                            				 		<input name="giaban" id="giaban" class="container-fluid" type="text" value="">
+                            				 		<input name="price" id="price" class="container-fluid" type="text" value="">
                             				 	</td>
                                     		</tr>
                                     		<tr>
@@ -109,13 +103,13 @@
                             				 		<div class="container-fluid">Nhà xuất bản</div>
                             				 	</td>
                             				 	<td>
-                            				 		<input name="nhaxuatban" id="nhaxuatban" class="container-fluid" type="text" value="">
+                            				 		<input name="publisher" id="publisher" class="container-fluid" type="text" value="">
                             				 	</td>
                             				 	<td class="font-weight-bolder">
                             				 		<div class="container-fluid">Năm xuất bản</div>
                             				 	</td>
                             				 	<td>
-                            				 		<input name="namxuatban" id="namxuatban" class="container-fluid" type="text" value="">
+                            				 		<input name="publication_year" id="publication_year" class="container-fluid" type="text" value="">
                             				 	</td>
                                     		</tr>
                                     		<tr>
@@ -123,7 +117,7 @@
                                             		<div class="container-fluid">Ảnh đại diện</div>
                                         		</td>
                                         		<td colspan="3">
-                                               		<textarea name="anhdaidien" class="container-fluid" rows="2"></textarea>
+                                               		<textarea name="image" class="container-fluid" rows="2"></textarea>
                                         		</td>
                                     		</tr>
                             			</table>

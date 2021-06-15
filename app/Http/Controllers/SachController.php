@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Response;
-use App\Models\Sach;
-use App\Models\DanhMuc;
+use App\Models\Book;
+use App\Models\Category;
 use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Contracts\Service\Attribute\Required;
 
@@ -19,7 +19,7 @@ class SachController extends Controller
      */
     public function index()
     {
-        $saches = Sach::all();
+        $saches = Book::all();
         return view("admin.sach.index",compact('saches'));
     }
 
@@ -30,7 +30,7 @@ class SachController extends Controller
      */
     public function create()
     {
-        $danhmucs = DanhMuc::all();
+        $danhmucs = Category::all();
         return view("admin.sach.create",compact('danhmucs'));
     }
 
@@ -43,45 +43,43 @@ class SachController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id_danhmuc' => 'required|numeric',
+            'category_id' => 'required|numeric',
             'is_active'=> 'required|numeric|min:0|max:1',
-            'tensach' => 'required|max:200',
-            'tentacgia' => 'required|max:200',
-            'nhaxuatban' =>'required|max:200',
-            'noinhap' => 'max:200',
-            'namxuatban' => 'required|digits:4|integer|min:2000',
-            'gianhap' => 'required|numeric|min:0',
-            'giaban' => 'required|numeric|min:0',
-            'tap' => 'numeric|min:1|nullable',
-            'anhdaidien' => 'required|max:500',
-            'soluong' => 'required|numeric|min:1',
+            'name' => 'required|max:200',
+            'publisher' =>'required|max:200',
+            'description' =>'required|max:200',
+            'publication_year' => 'required|digits:4|integer|min:2000',
+            'import_price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0',
+            'print_length' => 'numeric|min:1|nullable',
+            'image' => 'required|max:500',
+            'quantity' => 'required|numeric|min:1',
         ],[
-            'id_danhmuc.required' => 'Danh mục không được để trống',
+            'category_id.required' => 'Danh mục không được để trống',
             'is_active.required' => 'Is active không được để trống',
-            'tensach.required' => 'Tên sách là chuỗi có độ dài không quá 200',
-            'tentacgia.required' => 'Tên tác giả là chuỗi có độ dài không quá 200',
-            'nhaxuatban.required' => 'Nhà xuất bản là chuỗi có độ dài không quá 200',
-            'namxuatban.required' => 'Năm xuất bản lớn hơn năm 2000',
-            'gianhap.required' => 'Giá nhập là số lớn hơn bằng 0',
-            'giaban.required' => 'Giá bán là số lớn hơn bằng 0',
-            'tap' => 'Tập là số lớn hơn bằng 1',
-            'anhdaidien.required' => 'Link ảnh đại diện có độ dài không quá 500',
-            'soluong.required' => 'Số lượng là số lớn hơn bằng 1'
+            'name.required' => 'Tên sách là chuỗi có độ dài không quá 200',
+            'publisher.required' => 'Nhà xuất bản là chuỗi có độ dài không quá 200',
+            'description.required' => 'Nhà xuất bản là chuỗi có độ dài không quá 200',
+            'publication_year.required' => 'Năm xuất bản lớn hơn năm 2000',
+            'import_price.required' => 'Giá nhập là số lớn hơn bằng 0',
+            'price.required' => 'Giá bán là số lớn hơn bằng 0',
+            'print_length' => 'Tập là số lớn hơn bằng 1',
+            'image.required' => 'Link ảnh đại diện có độ dài không quá 500',
+            'quantity.required' => 'Số lượng là số lớn hơn bằng 1'
         ]);
-        $sach = new Sach();
-        $sach->id_danhmuc = $request->id_danhmuc;
-        $sach->tensach = $request->tensach;
+        $sach = new Book();
+        $sach->category_id = $request->category_id;
+        $sach->name = $request->name;
         $sach->slug =  Str::slug($request->tensach,'-');
-        $sach->tentacgia = $request->tentacgia;
-        $sach->nhaxuatban = $request->nhaxuatban;
-        $sach->namxuatban = $request->namxuatban;
-        $sach->noinhap = $request->noinhap;
+        $sach->publisher = $request->publisher;
+        $sach->publication_year = $request->publication_year;
         $sach->created_by = "admin";
-        $sach->gianhap = $request->gianhap;
-        $sach->giaban = $request->giaban;
-        $sach->tap = $request->tap;
-        $sach->anhdaidien = $request->anhdaidien;
-        $sach->soluong = $request->soluong;
+        $sach->import_price = $request->import_price;
+        $sach->price = $request->price;
+        $sach->print_length = $request->print_length;
+        $sach->image = $request->image;
+        $sach->quantity = $request->quantity;
+        $sach->description = $request->description;
         $sach->is_active = $request->is_active;
         $res = $sach->save();
         if($res){
@@ -112,8 +110,8 @@ class SachController extends Controller
      */
     public function edit($id)
     {
-        $danhmucs = DanhMuc::all();
-        $sach = Sach::find($id);
+        $danhmucs = Category::all();
+        $sach = Book::find($id);
         if($sach) {
             return view("admin.sach.edit",compact('sach','danhmucs'));
         } else {
@@ -130,45 +128,45 @@ class SachController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sach = Sach::find($id);
+        $sach = Book::find($id);
         if($sach) {
             $validated = $request->validate([
-                'id_danhmuc' => 'required|numeric',
+                'category_id' => 'required|numeric',
                 'is_active'=> 'required|numeric|min:0|max:1',
-                'tensach' => 'required|max:200',
-                'tentacgia' => 'required|max:200',
-                'nhaxuatban' =>'required|max:200',
-                'noinhap' => 'max:200',
-                'namxuatban' => 'required|digits:4|integer|min:2000',
-                'gianhap' => 'required|numeric|min:0',
-                'giaban' => 'required|numeric|min:0',
-                'tap' => 'numeric|min:1|nullable',
-                'anhdaidien' => 'required|max:500',
-                'soluong' => 'required|numeric|min:1',
+                'name' => 'required|max:200',
+                'publisher' =>'required|max:200',
+                'description' =>'required|max:200',
+                'publication_year' => 'required|digits:4|integer|min:2000',
+                'import_price' => 'required|numeric|min:0',
+                'price' => 'required|numeric|min:0',
+                'print_length' => 'numeric|min:1|nullable',
+                'image' => 'required|max:500',
+                'quantity' => 'required|numeric|min:1',
             ],[
-                'id_danhmuc.required' => 'Danh mục không được để trống',
+                'category_id.required' => 'Danh mục không được để trống',
                 'is_active.required' => 'Is active không được để trống',
-                'tensach.required' => 'Tên sách là chuỗi có độ dài không quá 200',
-                'tentacgia.required' => 'Tên tác giả là chuỗi có độ dài không quá 200',
-                'namxuatban.required' => 'Năm xuất bản lớn hơn năm 2000',
-                'gianhap.required' => 'Giá nhập là số lớn hơn bằng 0',
-                'giaban.required' => 'Giá bán là số lớn hơn bằng 0',
-                'tap' => 'Tập là số lớn hơn bằng 1',
-                'anhdaidien.required' => 'Link ảnh đại diện có độ dài không quá 500',
-                'soluong' => 'Số lượng là số lớn hơn bằng 1'
+                'name.required' => 'Tên sách là chuỗi có độ dài không quá 200',
+                'publisher.required' => 'Nhà xuất bản là chuỗi có độ dài không quá 200',
+                'description.required' => 'Nhà xuất bản là chuỗi có độ dài không quá 200',
+                'publication_year.required' => 'Năm xuất bản lớn hơn năm 2000',
+                'import_price.required' => 'Giá nhập là số lớn hơn bằng 0',
+                'price.required' => 'Giá bán là số lớn hơn bằng 0',
+                'print_length' => 'Tập là số lớn hơn bằng 1',
+                'image.required' => 'Link ảnh đại diện có độ dài không quá 500',
+                'quantity.required' => 'Số lượng là số lớn hơn bằng 1'
             ]);
-            $sach->id_danhmuc = $request->id_danhmuc;
-            $sach->tensach = $request->tensach;
-            $sach->tentacgia = $request->tentacgia;
-            $sach->nhaxuatban = $request->nhaxuatban;
-            $sach->namxuatban = $request->namxuatban;
-            $sach->noinhap = $request->noinhap;
+            $sach->category_id = $request->category_id;
+            $sach->name = $request->name;
+            $sach->slug =  Str::slug($request->tensach,'-');
+            $sach->publisher = $request->publisher;
+            $sach->publication_year = $request->publication_year;
             $sach->created_by = "admin";
-            $sach->gianhap = $request->gianhap;
-            $sach->giaban = $request->giaban;
-            $sach->tap = $request->tap;
-            $sach->anhdaidien = $request->anhdaidien;
-            $sach->soluong = $request->soluong;
+            $sach->import_price = $request->import_price;
+            $sach->price = $request->price;
+            $sach->print_length = $request->print_length;
+            $sach->image = $request->image;
+            $sach->quantity = $request->quantity;
+            $sach->description = $request->description;
             $sach->is_active = $request->is_active;
             $res = $sach->save();
             if($res){
@@ -195,7 +193,7 @@ class SachController extends Controller
      */
     public function destroy($id)
     {
-        $sach = Sach::destroy($id);
+        $sach = Book::destroy($id);
         return Response::json($sach);
     }
 }

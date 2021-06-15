@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Sach;
+use App\Models\Book;
 
 class ChartController extends Controller
 {
@@ -15,7 +15,7 @@ class ChartController extends Controller
      */
     public function index()
     {
-        $saches = DB::table('saches')->join('danh_mucs','saches.id_danhmuc','=','danh_mucs.id')->select('iddanhmuccha','tendanhmuccha','soluong')->get();
+        $saches = DB::table('books')->join('categories','books.category_id','=','categories.id')->select('parent_id','parent_name','quantity')->get();
         $saches->toJson();
         return view("admin.charts.charts",compact('saches'));
     }

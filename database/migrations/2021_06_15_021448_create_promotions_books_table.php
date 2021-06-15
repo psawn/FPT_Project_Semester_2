@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKhuyenMaiSachesTable extends Migration
+class CreatePromotionsBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,18 +14,18 @@ class CreateKhuyenMaiSachesTable extends Migration
      */
     public function up()
     {
-        Schema::create('khuyen_mai_saches', function (Blueprint $table) {
+        Schema::create('promotions_books', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("id_sach")->unsigned();
-            $table->foreign('id_sach')->references('id')->on('saches');
-            $table->integer("id_khuyenmai")->unsigned();
-            $table->foreign('id_khuyenmai')->references('id')->on('khuyen_mais');
+            $table->bigInteger("book_id")->unsigned();
+            $table->foreign('book_id')->references('id')->on('books');
+            $table->bigInteger("promotion_id")->unsigned();
+            $table->foreign('promotion_id')->references('id')->on('promotions');
             $table->boolean('is_active');
             $table->string('created_by',500);
             $table->string('updated_by',500)->nullable();
             $table->timestamps();
         });
-            DB::statement('ALTER TABLE khuyen_mai_saches ADD CONSTRAINT chk_khuyenmai_sach unique (id_sach,id_khuyenmai);');
+            DB::statement('ALTER TABLE promotions_books ADD CONSTRAINT chk_promotions_books unique (book_id,promotion_id);');
     }
 
     /**
@@ -35,6 +35,6 @@ class CreateKhuyenMaiSachesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('khuyen_mai_saches');
+        Schema::dropIfExists('promotions_books');
     }
 }

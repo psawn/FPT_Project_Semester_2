@@ -1,7 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Models\KhuyenMai;
+use App\Models\Promotion;
 use App\Http\Controllers\KhuyenMaiController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\DonHangController;
@@ -22,7 +23,9 @@ use App\Http\Controllers\ChartController;
 */
 
 Route::get('/', function () {
-    return view('admin.index');
+    $saches = DB::table('books')->join('categories','books.category_id','=','categories.id')->select('parent_id','parent_name','quantity')->get();
+    $saches->toJson();
+    return view('admin.index',compact('saches'));
 });
 Route::get('/tables', function () {
     return view('admin.tables');
@@ -62,4 +65,3 @@ Route::resource("admin/danhmuc", DanhMucController::class);
 Route::resource("admin/donhang", DonHangController::class);
 Route::resource("admin/sach", SachController::class);
 Route::resource("admin/charts", ChartController::class);
-
