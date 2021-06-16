@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('address',200);
             $table->integer('status')->default(0);
             $table->string('revenue')->nullable();
-            $table->string('not',500)->nullable();
+            $table->string('note',500)->nullable();
             $table->string('shipping_fee',100);
             $table->timestamps();
         });

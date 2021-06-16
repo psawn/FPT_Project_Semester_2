@@ -15,6 +15,10 @@
         <script src="{{ asset('admin/dist/sweetalert2/sweetalert2.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     </head>
+    <?php 
+        header('Cache-Control: no-store, private, no-cache, must-revalidate');
+        header('Cache-Control: pre-check=0, post-check=0, max-age=0, max-stale = 0', false);
+    ?>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="/">Start Bootstrap</a>
@@ -57,7 +61,7 @@
                                 Category
                                 <div class="sb-sidenav-collapse-arrow"></div>
                             </a>
-                            <a class="nav-link collapsed" href="{{ url('/admin/book') }}">
+                            <a class="nav-link collapsed" href="{{ url('/admin/sach') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Book
                                 <div class="sb-sidenav-collapse-arrow"></div>
@@ -150,7 +154,7 @@
         <script src="{{ asset('admin/dist/js/scripts.js') }}"></script>  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('admin/dist/assets/demo/chart-area-demo.js') }}"></script> 
-        <script src="{{ asset('admin/dist/assets/demo/chart-bar-demo.js') }}"></script> 
+<!--         <script src="{{ asset('admin/dist/assets/demo/chart-bar-demo.js') }}"></script>  -->
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('admin/dist/assets/demo/datatables-demo.js') }}"></script>
